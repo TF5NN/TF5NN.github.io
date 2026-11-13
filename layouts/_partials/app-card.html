@@ -1,0 +1,12 @@
+{{- /* One app: name, one-line description, and the three ways in. */ -}}
+{{- $src := partial "lang.html" . -}}
+<article class="app"{{ if ne $src site.Language.Lang }} lang="{{ $src }}"{{ end }}>
+  <h3 class="app-name"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+  {{- with .Params.summary }}<p class="app-summary">{{ . }}</p>{{ end }}
+  <p class="app-links">
+    {{- with .Params.app_url }}<a class="button" href="{{ . }}" lang="{{ site.Language.Lang }}">{{ T "open_app" }}</a>{{ end }}
+    {{- range .RegularPages.ByWeight }}
+    <a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
+    {{- end }}
+  </p>
+</article>

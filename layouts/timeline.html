@@ -1,0 +1,31 @@
+{{ define "main" }}
+<header class="page-head">
+  <h1>{{ .Title }}</h1>
+  {{- with .Params.summary }}<p class="lede">{{ . }}</p>{{ end }}
+</header>
+{{- with .Content }}<div class="prose">{{ . }}</div>{{ end }}
+
+{{- /* Sort every post by the year the work happened, newest first. */ -}}
+{{- $items := slice }}
+{{- range where site.RegularPages "Section" "posts" }}
+  {{- $d := partial "dates.html" . }}
+  {{- $items = $items | append (dict "key" (printf "%04d-%s" $d.year (.Date.Format "20060102")) "year" $d.year "page" . "d" $d) }}
+{{- end }}
+{{- $last := 0 }}
+<div class="timeline">
+{{- range sort $items "key" "desc" }}
+  {{- if ne .year $last }}
+    {{- if $last }}</ol></section>{{ end }}
+  <section class="year">
+    <h2>{{ .year }}</h2>
+    <ol>
+    {{- $last = .year }}
+  {{- end }}
+      <li>
+        {{ $src := partial "lang.html" .page }}<a href="{{ .page.RelPermalink }}"{{ if ne $src site.Language.Lang }} lang="{{ $src }}"{{ end }}>{{ .page.Title }}</a>
+        <span class="year-dates">{{ with .d.worked }}{{ . }}, {{ T "posted" | lower }} {{ end }}{{ .d.posted | time.Format ":date_medium" }}</span>
+      </li>
+{{- end }}
+{{- if $last }}</ol></section>{{ end }}
+</div>
+{{ end }}

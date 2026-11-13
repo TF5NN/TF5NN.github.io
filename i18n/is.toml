@@ -1,0 +1,72 @@
+# Fasti textinn á íslensku hlið síðunnar.
+
+skip = "Beint í efni"
+home = "forsíða"
+language = "Tungumál"
+main_menu = "Aðalvalmynd"
+
+posted = "Birt"
+worked_on = "Unnið"
+written_next_year = "Skrifað árið eftir"
+
+apps_heading = "Forrit sem ég hef búið til"
+open_app = "Opna forritið ↗"
+source_github = "Frumkóði á GitHub ↗"
+overview = "Yfirlit"
+
+latest_posts = "Nýjustu færslur"
+browse_by_tag = "Skoða eftir efnisorði"
+no_posts = "Engar færslur ennþá."
+older_post = "Eldri færsla"
+newer_post = "Nýrri færsla"
+older_posts = "Eldri færslur →"
+newer_posts = "← Nýrri færslur"
+page_of = "Síða {{ .Page }} af {{ .Total }}"
+more_posts = "Fleiri færslur"
+
+tags_lede = "Hver færsla hefur eitt eða fleiri efnisorð. Veldu eitt til að sjá aðeins þær færslur."
+no_tags = "Engin efnisorð ennþá."
+
+rss = "RSS-veita"
+email_at = "hjá"
+
+# Birtist á síðu sem er fengin að láni úr hinu tungumálinu.
+only_in_is = "Aðeins á íslensku"
+only_in_en = "Aðeins á ensku"
+notice_is = "Þessi síða er á íslensku."
+notice_en = "Þessi síða er á ensku. Hún hefur ekki enn verið þýdd á íslensku."
+
+# Birtist á þýddri færslu.
+translated_from_is = "Þýtt úr íslensku."
+translated_from_is_ai = "Þýtt úr íslensku með gervigreind og yfirfarið af mér."
+translated_from_en = "Þýtt úr ensku."
+translated_from_en_ai = "Þýtt úr ensku með gervigreind og yfirfarið af mér."
+read_original = "Lesa frumtextann"
+
+notfound_title = "Þessi síða finnst ekki"
+notfound_text = "Slóðin gæti verið rangt slegin inn eða síðan hefur verið færð."
+notfound_home = "Fara á forsíðu"
+notfound_posts = "Skoða allar færslur"
+
+# Íslensk heiti efnisorða. Í færslunum sjálfum eru efnisorðin alltaf
+# skrifuð eins (ensku heitin), hér er bara ákveðið hvað sést á íslensku.
+tag_ham-radio = "Amatörradíó"
+tag_3d-printing = "Þrívíddarprentun"
+tag_metalworking = "Málmsmíði"
+tag_hike = "Gönguferðir"
+
+[written_years_later]
+one = "Skrifað {{ .Count }} ári síðar"
+other = "Skrifað {{ .Count }} árum síðar"
+
+[all_posts]
+one = "Allar færslur ({{ .Count }})"
+other = "Allar færslur ({{ .Count }})"
+
+[posts_count]
+one = "{{ .Count }} færsla"
+other = "{{ .Count }} færslur"
+
+[posts_with_tag]
+one = "{{ .Count }} færsla með þetta efnisorð."
+other = "{{ .Count }} færslur með þetta efnisorð."

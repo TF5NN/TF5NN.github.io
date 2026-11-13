@@ -1,0 +1,10 @@
+{{- /* The EN / IS buttons. Each goes to the same page in that language. */ -}}
+{{- $page := . -}}
+<nav class="lang-switch" aria-label="{{ T "language" }}">
+  {{- range hugo.Sites }}
+  {{- $lang := .Language.Lang }}
+  {{- $target := .Home }}
+  {{- range $page.AllTranslations }}{{ if eq .Language.Lang $lang }}{{ $target = . }}{{ end }}{{ end }}
+  <a href="{{ $target.RelPermalink }}" lang="{{ $lang }}" hreflang="{{ $lang }}" title="{{ .Language.Label }}"{{ if eq $lang site.Language.Lang }} aria-current="true"{{ end }}>{{ upper $lang }}</a>
+  {{- end }}
+</nav>

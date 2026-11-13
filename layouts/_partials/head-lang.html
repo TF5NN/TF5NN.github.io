@@ -1,0 +1,24 @@
+{{- /*
+  Tells search engines which address is the real home of a page.
+  A page borrowed from the other language points back to its original.
+  A page with a real translation announces both versions.
+*/ -}}
+{{- $src := partial "lang.html" . -}}
+{{- $here := site.Language.Lang -}}
+{{- $canonical := .Permalink -}}
+{{- $alternates := slice -}}
+{{- range .Translations -}}
+  {{- $other := partial "lang.html" . -}}
+  {{- if ne $src $here -}}
+    {{- if eq .Language.Lang $src }}{{ $canonical = .Permalink }}{{ end -}}
+  {{- else if eq $other .Language.Lang -}}
+    {{- $alternates = $alternates | append . -}}
+  {{- end -}}
+{{- end }}
+  <link rel="canonical" href="{{ $canonical }}">
+  {{- if $alternates }}
+  <link rel="alternate" hreflang="{{ $here }}" href="{{ .Permalink }}">
+  {{- range $alternates }}
+  <link rel="alternate" hreflang="{{ .Language.Lang }}" href="{{ .Permalink }}">
+  {{- end }}
+  {{- end }}

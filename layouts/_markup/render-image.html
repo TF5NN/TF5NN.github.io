@@ -1,0 +1,11 @@
+{{- /* Every photo written in a post goes through here: resized, lazy-loaded, optional caption. */ -}}
+{{- $i := partial "img.html" (dict "src" .Destination "width" 760 "page" .Page) -}}
+{{- $alt := .PlainText -}}
+{{- if .Title -}}
+<figure>
+  <img src="{{ $i.src }}"{{ with $i.src2 }} srcset="{{ $i.src }} 1x, {{ . }} 2x"{{ end }} alt="{{ $alt }}"{{ with $i.width }} width="{{ . }}"{{ end }}{{ with $i.height }} height="{{ . }}"{{ end }} loading="lazy" decoding="async">
+  <figcaption>{{ .Title | markdownify }}</figcaption>
+</figure>
+{{- else -}}
+<img src="{{ $i.src }}"{{ with $i.src2 }} srcset="{{ $i.src }} 1x, {{ . }} 2x"{{ end }} alt="{{ $alt }}"{{ with $i.width }} width="{{ . }}"{{ end }}{{ with $i.height }} height="{{ . }}"{{ end }} loading="lazy" decoding="async">
+{{- end -}}

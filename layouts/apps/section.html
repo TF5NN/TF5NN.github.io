@@ -1,0 +1,23 @@
+{{ define "main" }}
+{{- $src := partial "lang.html" . }}
+{{- if .Parent.IsHome }}
+<header class="page-head">
+  <h1>{{ .Title }}</h1>
+  {{- with .Params.summary }}<p class="lede">{{ . }}</p>{{ end }}
+</header>
+{{- with .Content }}<div class="prose">{{ . }}</div>{{ end }}
+<section class="apps-strip">
+  <div class="apps-grid">
+    {{- range .Sections.ByWeight }}
+    {{ partial "app-card.html" . }}
+    {{- end }}
+  </div>
+</section>
+{{- else }}
+<article class="page">
+  {{ partial "app-nav.html" (dict "app" . "current" .) }}
+  {{ partial "lang-notice.html" . }}
+  <div class="prose"{{ if ne $src site.Language.Lang }} lang="{{ $src }}"{{ end }}>{{ .Content }}</div>
+</article>
+{{- end }}
+{{ end }}

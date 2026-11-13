@@ -1,0 +1,158 @@
+# Site settings. Lines starting with # are notes and are ignored.
+
+# The address of the site. When GitHub publishes the site it fills in the
+# real address by itself (also after you add your own domain), so you can
+# leave this line alone.
+baseURL = "https://tf5nn.github.io/"
+
+title = "TF5NN"
+defaultContentLanguage = "en"
+timeZone = "Atlantic/Reykjavik"
+enableRobotsTXT = true
+capitalizeListTitles = false
+
+[params]
+  author = "Gunnar B. Guðlaugsson, TF5NN"
+  github = "https://github.com/TF5NN"
+  # How many posts the front page shows before "All posts".
+  homePosts = 8
+  # Anonymous visit counting, the same as in the apps. Leave empty for none,
+  # or write your GoatCounter site code, for example "tf5nn".
+  goatcounter = "tf5nn"
+  # Your email address, in two halves (the part before @ and the part after).
+  # It is kept in pieces so it never appears whole in the site's pages.
+  # Show it in any text by writing a link to #email, for example: [email](#email)
+  email_user = "gunnar.bjarki"
+  email_domain = "gmail.com"
+
+# ---- The two languages ----
+# English is the main address (/), Icelandic lives under /is/.
+
+[languages.en]
+  locale = "en-GB"
+  label = "English"
+  weight = 1
+  [languages.en.params]
+    # Small line under the name in the top-left corner.
+    tagline = "Projects & field notes"
+    # One sentence that search engines and link previews show.
+    description = "Projects, builds and field notes from TF5NN: ham radio, 3D printing, metalwork and summits."
+  # The links in the top bar, left to right.
+  [[languages.en.menus.main]]
+    identifier = "posts"
+    name = "Posts"
+    pageRef = "/posts"
+    weight = 10
+  [[languages.en.menus.main]]
+    identifier = "apps"
+    name = "Apps"
+    pageRef = "/apps"
+    weight = 20
+  [[languages.en.menus.main]]
+    identifier = "timeline"
+    name = "Timeline"
+    pageRef = "/timeline"
+    weight = 30
+  [[languages.en.menus.main]]
+    identifier = "tags"
+    name = "Tags"
+    pageRef = "/tags"
+    weight = 40
+  [[languages.en.menus.main]]
+    identifier = "about"
+    name = "About"
+    pageRef = "/about"
+    weight = 50
+
+[languages.is]
+  locale = "is"
+  label = "Íslenska"
+  weight = 2
+  [languages.is.params]
+    tagline = "Verkefni og minnispunktar"
+    description = "Verkefni, smíðar og minnispunktar frá TF5NN: amatörradíó, þrívíddarprentun, málmsmíði og fjallgöngur."
+  [[languages.is.menus.main]]
+    identifier = "posts"
+    name = "Færslur"
+    pageRef = "/posts"
+    weight = 10
+  [[languages.is.menus.main]]
+    identifier = "apps"
+    name = "Forrit"
+    pageRef = "/apps"
+    weight = 20
+  [[languages.is.menus.main]]
+    identifier = "timeline"
+    name = "Tímalína"
+    pageRef = "/timeline"
+    weight = 30
+  [[languages.is.menus.main]]
+    identifier = "tags"
+    name = "Efnisorð"
+    pageRef = "/tags"
+    weight = 40
+  [[languages.is.menus.main]]
+    identifier = "about"
+    name = "Um mig"
+    pageRef = "/about"
+    weight = 50
+
+# ---- You should not need to change anything below this line. ----
+
+[taxonomies]
+  tag = "tags"
+
+[pagination]
+  pagerSize = 20
+
+[outputs]
+  home = ["html"]
+  section = ["html", "rss"]
+  taxonomy = ["html"]
+  term = ["html"]
+
+[markup.goldmark.renderer]
+  # Lets posts contain plain HTML (the web editor sometimes writes it).
+  unsafe = true
+[markup.goldmark.parser]
+  wrapStandAloneImageWithinParagraph = false
+
+[module]
+  # Photos live in static/media. This also hands them to the image resizer,
+  # so the site serves small versions of big phone photos automatically.
+  [[module.mounts]]
+    source = "assets"
+    target = "assets"
+  [[module.mounts]]
+    source = "static"
+    target = "static"
+  [[module.mounts]]
+    source = "static/media"
+    target = "assets/media"
+
+  # How the two languages share content. The order of these four blocks
+  # matters, so do not rearrange them.
+  #   1 and 2: each language uses its own folder first.
+  #   3 and 4: anything missing is borrowed from the other language's
+  #            folder, so a post written in one language still shows up
+  #            in both.
+  [[module.mounts]]
+    source = "content/en"
+    target = "content"
+    [module.mounts.sites.matrix]
+      languages = ["en"]
+  [[module.mounts]]
+    source = "content/is"
+    target = "content"
+    [module.mounts.sites.matrix]
+      languages = ["is"]
+  [[module.mounts]]
+    source = "content/is"
+    target = "content"
+    [module.mounts.sites.matrix]
+      languages = ["en"]
+  [[module.mounts]]
+    source = "content/en"
+    target = "content"
+    [module.mounts.sites.matrix]
+      languages = ["is"]

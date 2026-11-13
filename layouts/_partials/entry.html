@@ -1,0 +1,30 @@
+{{- /* One row in a list of posts. Give it: page, and h (the heading tag to use). */ -}}
+{{- $p := .page -}}
+{{- $h := .h | default "h2" -}}
+{{- $d := partial "dates.html" $p -}}
+{{- $src := partial "lang.html" $p -}}
+{{- $foreign := ne $src site.Language.Lang -}}
+<article class="entry">
+  <div class="entry-dates">
+    {{ partial "stamp.html" $p }}
+    {{- if $foreign }}
+    <p class="only">{{ T (printf "only_in_%s" $src) }}</p>
+    {{- end }}
+  </div>
+  <div class="entry-main"{{ if $foreign }} lang="{{ $src }}"{{ end }}>
+    {{ printf "<%s class=\"entry-title\">" $h | safeHTML }}<a href="{{ $p.RelPermalink }}">{{ $p.Title }}</a>{{ printf "</%s>" $h | safeHTML }}
+    {{- /* The short text under the title: the "summary" field if there is one, otherwise the first paragraph. */ -}}
+    {{- $sum := $p.Params.summary }}
+    {{- if not $sum }}{{ with findRE `(?s)<p>.*?</p>` $p.Content 1 }}{{ $sum = index . 0 | plainify | htmlUnescape | strings.TrimSpace }}{{ end }}{{ end }}
+    {{- with $sum }}
+    <p class="entry-summary">{{ . | truncate 190 }}</p>
+    {{- end }}
+    {{ partial "tags.html" $p }}
+  </div>
+  {{- with $p.Params.cover }}
+  {{- $i := partial "img.html" (dict "src" . "fill" "184x138" "page" $p) }}
+  <a class="entry-thumb" href="{{ $p.RelPermalink }}" tabindex="-1" aria-hidden="true">
+    <img src="{{ $i.src }}"{{ with $i.src2 }} srcset="{{ $i.src }} 1x, {{ . }} 2x"{{ end }} alt="" width="184" height="138" loading="lazy" decoding="async">
+  </a>
+  {{- end }}
+</article>

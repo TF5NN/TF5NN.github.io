@@ -1,0 +1,4 @@
+# Things the site builder creates by itself. They do not belong in the repository.
+public/
+resources/_gen/
+.hugo_build.lock

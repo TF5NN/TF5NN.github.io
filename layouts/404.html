@@ -1,0 +1,7 @@
+{{ define "main" }}
+<header class="page-head">
+  <h1>{{ T "notfound_title" }}</h1>
+  <p class="lede">{{ T "notfound_text" }}</p>
+  <p class="app-links" style="margin-top:18px"><a class="button" href="{{ site.Home.RelPermalink }}">{{ T "notfound_home" }}</a> <a href="{{ (site.GetPage "/posts").RelPermalink }}">{{ T "notfound_posts" }}</a></p>
+</header>
+{{ end }}

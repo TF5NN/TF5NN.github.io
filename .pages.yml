@@ -1,0 +1,292 @@
+# Settings for Pages CMS (https://pagescms.org), the web editor for writing
+# posts without touching code. It reads this file to know which forms to show.
+
+# Where uploaded photos go. Both languages share the same photos.
+media:
+  input: static/media
+  output: /media
+  rename: safe
+  categories: [image]
+
+content:
+  # ---- Posts written in English ----
+  # A post only needs to exist in one of the two lists. The site shows it
+  # on both language sides and marks it "English only" or "Icelandic only".
+  # To pair a translation with its original, give both files the same
+  # file name (the file name box appears when you create a post).
+  - name: posts-en
+    label: Posts (English)
+    type: collection
+    path: content/en/posts
+    format: yaml-frontmatter
+    exclude: ["_index.md"]
+    filename:
+      template: "{year}-{month}-{day}-{primary}.md"
+      field: create
+    view:
+      fields: [title, date, worked_on]
+      primary: title
+      sort: [date, title]
+      default:
+        sort: date
+        order: desc
+    fields:
+      - name: title
+        label: Title
+        type: string
+        required: true
+      - name: date
+        label: Posted
+        description: The day this post goes on the site. Leave it as today.
+        type: date
+        options:
+          format: yyyy-MM-dd
+      - name: worked_on
+        label: Worked on
+        description: "When it actually happened, in your own words: 2022, Summer 2022, March–June 2022, 2019–2021. Leave empty if it is the same as the posted date."
+        type: string
+      - name: tags
+        label: Tags
+        description: The Icelandic side shows these with their Icelandic names.
+        type: select
+        options:
+          multiple: true
+          # To add a tag, add a line here AND in the other language's list
+          # further down or up. Keep the spelling the same everywhere.
+          values:
+            - HAM radio
+            - SOTA
+            - POTA
+            - 3D printing
+            - Metalworking
+            - Hike
+      - name: cover
+        label: Main photo
+        description: Shown at the top of the post and as the small picture in lists. Optional.
+        type: image
+      - name: cover_alt
+        label: Main photo description
+        description: One sentence saying what is in the photo, for people who cannot see it. Optional.
+        type: string
+      - name: summary
+        label: Short summary
+        description: Shown under the title in lists. Leave empty to use the first paragraph.
+        type: text
+      - name: draft
+        label: Draft (keep it off the site for now)
+        type: boolean
+      - name: translated_from
+        label: Translated from
+        description: Only for a translation. Leave empty for a post you wrote in English.
+        type: select
+        options:
+          values:
+            - name: is
+              label: Icelandic
+      - name: translated_by
+        label: Translated by
+        description: Only for a translation done with AI. Adds "with AI, checked by me" to the note.
+        type: select
+        options:
+          values:
+            - name: ai
+              label: AI, checked by me
+      - name: body
+        label: Text
+        type: rich-text
+        options:
+          format: markdown
+
+  # ---- Posts written in Icelandic ----
+  - name: posts-is
+    label: Færslur (íslenska)
+    type: collection
+    path: content/is/posts
+    format: yaml-frontmatter
+    exclude: ["_index.md"]
+    filename:
+      template: "{year}-{month}-{day}-{primary}.md"
+      field: create
+    view:
+      fields: [title, date, worked_on]
+      primary: title
+      sort: [date, title]
+      default:
+        sort: date
+        order: desc
+    fields:
+      - name: title
+        label: Titill
+        type: string
+        required: true
+      - name: date
+        label: Birt
+        description: Dagurinn sem færslan fer á síðuna. Láttu daginn í dag standa.
+        type: date
+        options:
+          format: yyyy-MM-dd
+      - name: worked_on
+        label: Unnið
+        description: "Hvenær þetta gerðist í raun, með þínum orðum: 2022, sumarið 2022, mars–júní 2022, 2019–2021. Hafðu autt ef það er sami dagur og birtingin."
+        type: string
+      - name: tags
+        label: Efnisorð
+        description: Skrifuð eins á báðum málum. Íslenska hliðin sýnir íslensku heitin.
+        type: select
+        options:
+          multiple: true
+          # To add a tag, add a line here AND in the other language's list
+          # further down or up. Keep the spelling the same everywhere.
+          values:
+            - HAM radio
+            - SOTA
+            - POTA
+            - 3D printing
+            - Metalworking
+            - Hike
+      - name: cover
+        label: Aðalmynd
+        description: Sést efst í færslunni og sem smámynd í listum. Má sleppa.
+        type: image
+      - name: cover_alt
+        label: Lýsing á aðalmynd
+        description: Ein setning um hvað er á myndinni, fyrir þá sem sjá hana ekki. Má sleppa.
+        type: string
+      - name: summary
+        label: Stutt samantekt
+        description: Sést undir titlinum í listum. Hafðu autt til að nota fyrstu efnisgreinina.
+        type: text
+      - name: draft
+        label: Drög (ekki birta strax)
+        type: boolean
+      - name: translated_from
+        label: Þýtt úr
+        description: Aðeins fyrir þýðingu. Hafðu autt ef þú skrifaðir færsluna á íslensku.
+        type: select
+        options:
+          values:
+            - name: en
+              label: Ensku
+      - name: translated_by
+        label: Þýtt af
+        description: Aðeins ef gervigreind þýddi. Bætir „með gervigreind og yfirfarið af mér“ við athugasemdina.
+        type: select
+        options:
+          values:
+            - name: ai
+              label: Gervigreind, yfirfarið af mér
+      - name: body
+        label: Texti
+        type: rich-text
+        options:
+          format: markdown
+
+  # ---- App pages (English) ----
+  - name: apps
+    label: App pages
+    type: group
+    items:
+      - name: efhw-overview
+        label: Antenna Visualizer, overview
+        type: file
+        path: content/en/apps/hf-antenna-impedance-visualizer/_index.md
+        format: yaml-frontmatter
+        fields:
+          - { name: title, label: Name, type: string }
+          - { name: summary, label: One-line description, type: text }
+          - { name: app_url, label: Link to the app, type: string }
+          - { name: repo_url, label: Link to the source on GitHub, type: string }
+          - { name: weight, label: Order (lower comes first), type: number }
+          - { name: body, label: Text, type: rich-text, options: { format: markdown } }
+      - name: efhw-instructions
+        label: Antenna Visualizer, instructions
+        type: file
+        path: content/en/apps/hf-antenna-impedance-visualizer/instructions.md
+        format: yaml-frontmatter
+        fields:
+          - { name: title, label: Title, type: string }
+          - { name: weight, label: Order (lower comes first), type: number }
+          - { name: body, label: Text, type: rich-text, options: { format: markdown } }
+      - name: efhw-history
+        label: Antenna Visualizer, how it came to be
+        type: file
+        path: content/en/apps/hf-antenna-impedance-visualizer/history.md
+        format: yaml-frontmatter
+        fields:
+          - { name: title, label: Title, type: string }
+          - { name: weight, label: Order (lower comes first), type: number }
+          - { name: body, label: Text, type: rich-text, options: { format: markdown } }
+      - name: northbound-overview
+        label: Northbound, overview
+        type: file
+        path: content/en/apps/northbound/_index.md
+        format: yaml-frontmatter
+        fields:
+          - { name: title, label: Name, type: string }
+          - { name: summary, label: One-line description, type: text }
+          - { name: app_url, label: Link to the app, type: string }
+          - { name: repo_url, label: Link to the source on GitHub, type: string }
+          - { name: weight, label: Order (lower comes first), type: number }
+          - { name: body, label: Text, type: rich-text, options: { format: markdown } }
+      - name: northbound-instructions
+        label: Northbound, instructions
+        type: file
+        path: content/en/apps/northbound/instructions.md
+        format: yaml-frontmatter
+        fields:
+          - { name: title, label: Title, type: string }
+          - { name: weight, label: Order (lower comes first), type: number }
+          - { name: body, label: Text, type: rich-text, options: { format: markdown } }
+      - name: northbound-history
+        label: Northbound, how it came to be
+        type: file
+        path: content/en/apps/northbound/history.md
+        format: yaml-frontmatter
+        fields:
+          - { name: title, label: Title, type: string }
+          - { name: weight, label: Order (lower comes first), type: number }
+          - { name: body, label: Text, type: rich-text, options: { format: markdown } }
+
+  # ---- Single pages, one per language ----
+  - name: pages
+    label: Front page and About
+    type: group
+    items:
+      - name: home-en
+        label: Front page text (English)
+        type: file
+        path: content/en/_index.md
+        format: yaml-frontmatter
+        fields:
+          - { name: title, label: Site name, type: string }
+          - { name: headline, label: Headline, type: string }
+          - { name: headline_second, label: "Headline, second sentence (shown in green)", type: string }
+          - { name: body, label: Introduction, type: rich-text, options: { format: markdown } }
+      - name: home-is
+        label: Forsíðutexti (íslenska)
+        type: file
+        path: content/is/_index.md
+        format: yaml-frontmatter
+        fields:
+          - { name: title, label: Heiti síðunnar, type: string }
+          - { name: headline, label: Fyrirsögn, type: string }
+          - { name: headline_second, label: "Fyrirsögn, seinni setning (græn)", type: string }
+          - { name: body, label: Inngangur, type: rich-text, options: { format: markdown } }
+      - name: about-en
+        label: About page (English)
+        type: file
+        path: content/en/about.md
+        format: yaml-frontmatter
+        fields:
+          - { name: title, label: Title, type: string }
+          - { name: summary, label: One-line description, type: text }
+          - { name: body, label: Text, type: rich-text, options: { format: markdown } }
+      - name: about-is
+        label: Um mig (íslenska)
+        type: file
+        path: content/is/about.md
+        format: yaml-frontmatter
+        fields:
+          - { name: title, label: Titill, type: string }
+          - { name: summary, label: Lýsing í einni línu, type: text }
+          - { name: body, label: Texti, type: rich-text, options: { format: markdown } }

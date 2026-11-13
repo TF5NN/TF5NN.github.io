@@ -1,0 +1,22 @@
+{{- /* Title block and tabs shared by an app's pages. Give it: app (the app's main page), current. */ -}}
+{{- $app := .app -}}
+{{- $current := .current -}}
+<header class="app-head">
+  <p class="crumb"><a href="{{ $app.Parent.RelPermalink }}">{{ $app.Parent.LinkTitle }}</a></p>
+  <div class="app-head-row">
+    <div>
+      <h1>{{ $app.Title }}</h1>
+      {{- with $app.Params.summary }}<p class="lede">{{ . }}</p>{{ end }}
+    </div>
+    <p class="app-head-actions">
+      {{- with $app.Params.app_url }}<a class="button" href="{{ . }}">{{ T "open_app" }}</a>{{ end }}
+      {{- with $app.Params.repo_url }}<a class="button button-quiet" href="{{ . }}">{{ T "source_github" }}</a>{{ end }}
+    </p>
+  </div>
+  <nav class="tabs" aria-label="{{ $app.Title }} pages">
+    <a href="{{ $app.RelPermalink }}"{{ if eq $current $app }} aria-current="page"{{ end }}>{{ T "overview" }}</a>
+    {{- range $app.RegularPages.ByWeight }}
+    <a href="{{ .RelPermalink }}"{{ if eq $current . }} aria-current="page"{{ end }}>{{ .LinkTitle }}</a>
+    {{- end }}
+  </nav>
+</header>

@@ -1,0 +1,44 @@
+{{- /*
+  Turns a photo path into a small, fast version.
+  Give it: src (for example "/media/tuner.jpg"), width, and optionally fill "WxH" to crop.
+  Returns: src, width, height (and src2 = a double-size version when it could make one).
+  Photos it cannot find or resize (SVG, GIF, links to other sites) are passed through untouched.
+*/ -}}
+{{- $src := .src -}}
+{{- $out := dict "src" $src -}}
+{{- $res := false -}}
+{{- with .page }}{{ with .Resources.Get $src }}{{ $res = . }}{{ end }}{{ end -}}
+{{- if and (not $res) (hasPrefix $src "/media/") -}}
+  {{- $path := strings.TrimPrefix "/" $src -}}
+  {{- with resources.Get $path }}{{ $res = . }}{{ end -}}
+  {{- if not $res }}{{ with resources.Get (urls.PathUnescape $path) }}{{ $res = . }}{{ end }}{{ end -}}
+{{- end -}}
+{{- if $res -}}
+  {{- $out = dict "src" $res.RelPermalink -}}
+  {{- if and (eq $res.ResourceType "image") (not (in (slice "svg" "gif") $res.MediaType.SubType)) -}}
+    {{- $img := $res | images.Filter images.AutoOrient -}}
+    {{- $small := $img -}}
+    {{- $big := false -}}
+    {{- if .fill -}}
+      {{- $parts := split .fill "x" -}}
+      {{- $w := int (index $parts 0) -}}{{- $h := int (index $parts 1) -}}
+      {{- $small = $img.Fill (printf "%dx%d webp q78" $w $h) -}}
+      {{- if and (ge $img.Width (mul $w 2)) (ge $img.Height (mul $h 2)) -}}
+        {{- $big = $img.Fill (printf "%dx%d webp q72" (mul $w 2) (mul $h 2)) -}}
+      {{- end -}}
+    {{- else -}}
+      {{- $w := .width | default 760 -}}
+      {{- if gt $img.Width $w -}}
+        {{- $small = $img.Resize (printf "%dx webp q80" $w) -}}
+        {{- if ge $img.Width (mul $w 2) -}}
+          {{- $big = $img.Resize (printf "%dx webp q74" (mul $w 2)) -}}
+        {{- end -}}
+      {{- else -}}
+        {{- $small = $img.Process "webp q82" -}}
+      {{- end -}}
+    {{- end -}}
+    {{- $out = dict "src" $small.RelPermalink "width" $small.Width "height" $small.Height -}}
+    {{- with $big }}{{ $out = merge $out (dict "src2" .RelPermalink) }}{{ end -}}
+  {{- end -}}
+{{- end -}}
+{{- return $out -}}

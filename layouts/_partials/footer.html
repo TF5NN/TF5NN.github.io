@@ -1,0 +1,8 @@
+<footer class="site-footer">
+  <span>© {{ now.Year }} {{ site.Params.author }}</span>
+  <span class="footer-links">
+    {{- with site.GetPage "/posts" }}{{ with .OutputFormats.Get "rss" }}<a href="{{ .RelPermalink }}">{{ T "rss" }}</a><span class="slash" aria-hidden="true">/</span>{{ end }}{{ end -}}
+    {{- with site.Params.github }}<a href="{{ . }}" rel="me noopener">GitHub</a><span class="slash" aria-hidden="true">/</span>{{ end -}}
+    {{ with site.GetPage "/about" }}<a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>{{ end }}
+  </span>
+</footer>

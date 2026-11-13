@@ -1,0 +1,20 @@
+{{- /*
+  Links inside posts. A link to a page on this site, written like /apps/ or
+  /posts/some-post/, is pointed at the right language by itself.
+*/ -}}
+{{- /* A link to #email shows your email address, guarded from simple spam bots. */ -}}
+{{- if eq .Destination "#email" -}}
+{{ partial "email.html" . }}
+{{- else -}}
+{{- $dest := .Destination -}}
+{{- if and (hasPrefix $dest "/") (not (hasPrefix $dest "//")) -}}
+  {{- $u := urls.Parse $dest -}}
+  {{- $path := strings.TrimSuffix "/" $u.Path | default "/" -}}
+  {{- with site.GetPage $path -}}
+    {{- $dest = .RelPermalink -}}
+    {{- with $u.Fragment }}{{ $dest = printf "%s#%s" $dest . }}{{ end -}}
+  {{- end -}}
+{{- end -}}
+<a href="{{ $dest | safeURL }}"{{ with .Title }} title="{{ . }}"{{ end }}>{{ .Text }}</a>
+{{- end -}}
+{{- /**/ -}}

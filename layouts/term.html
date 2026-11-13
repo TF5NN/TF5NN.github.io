@@ -1,0 +1,13 @@
+{{ define "main" }}
+<header class="page-head">
+  <p class="crumb"><a href="{{ .Parent.RelPermalink }}">{{ .Parent.LinkTitle }}</a></p>
+  <h1>{{ partial "tag-name.html" . }}</h1>
+  <p class="lede">{{ T "posts_with_tag" (len .Pages) }}</p>
+</header>
+<section class="log">
+  {{- range (.Paginate .Pages).Pages }}
+  {{ partial "entry.html" (dict "page" . "h" "h2") }}
+  {{- end }}
+</section>
+{{ partial "pager.html" . }}
+{{ end }}

@@ -1,0 +1,11 @@
+{{ define "main" }}
+{{- $src := partial "lang.html" . }}
+<article class="page">
+  {{ partial "app-nav.html" (dict "app" .Parent "current" .) }}
+  {{ partial "lang-notice.html" . }}
+  <div class="prose"{{ if ne $src site.Language.Lang }} lang="{{ $src }}"{{ end }}>
+    <h2 class="prose-title">{{ .Title }}</h2>
+    {{ .Content }}
+  </div>
+</article>
+{{ end }}

@@ -1,0 +1,5 @@
+{{- /* A line telling the reader that this page is borrowed from the other language. */ -}}
+{{- $src := partial "lang.html" . -}}
+{{- if ne $src site.Language.Lang }}
+<p class="note lang-note">{{ T (printf "notice_%s" $src) }}</p>
+{{- end -}}

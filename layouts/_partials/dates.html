@@ -1,0 +1,37 @@
+{{- /*
+  Works out the two dates of a post.
+  posted    = the "date" field (when it went on the site)
+  worked_on = free text such as "2022", "Spring 2022" or "March–June 2022"
+  Returns: posted, worked (text), year (the project year), gap (years between), note.
+*/ -}}
+{{- $posted := .Date -}}
+{{- $raw := .Params.worked_on -}}
+{{- $worked := "" -}}
+{{- if $raw -}}
+  {{- if eq (printf "%T" $raw) "time.Time" -}}
+    {{- $worked = $raw | time.Format ":date_medium" -}}
+  {{- else -}}
+    {{- $worked = strings.TrimSpace (printf "%v" $raw) -}}
+    {{- /* An exact date written as 2022-04-12 is shown as 12 Apr 2022. */ -}}
+    {{- if findRE `^\d{4}-\d{2}-\d{2}$` $worked -}}
+      {{- $worked = time.AsTime $worked | time.Format ":date_medium" -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- $year := 0 -}}
+{{- $found := findRE `(19|20)\d\d` $worked -}}
+{{- if $found -}}
+  {{- $year = int (index $found (sub (len $found) 1)) -}}
+{{- end -}}
+{{- $gap := 0 -}}
+{{- if and $year (not $posted.IsZero) -}}
+  {{- $gap = sub $posted.Year $year -}}
+{{- end -}}
+{{- $note := "" -}}
+{{- if eq $gap 1 -}}
+  {{- $note = T "written_next_year" -}}
+{{- else if gt $gap 1 -}}
+  {{- $note = T "written_years_later" $gap -}}
+{{- end -}}
+{{- if not $year -}}{{- $year = $posted.Year -}}{{- end -}}
+{{- return (dict "posted" $posted "worked" $worked "year" $year "gap" $gap "note" $note) -}}

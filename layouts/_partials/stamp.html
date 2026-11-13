@@ -1,0 +1,17 @@
+{{- /* The two-date block shown with every post. */ -}}
+{{- $d := partial "dates.html" . -}}
+<dl class="stamp">
+  <div>
+    <dt>{{ T "posted" }}</dt>
+    <dd><time datetime="{{ $d.posted.Format "2006-01-02" }}">{{ $d.posted | time.Format ":date_medium" }}</time></dd>
+  </div>
+  {{- with $d.worked }}
+  <div>
+    <dt>{{ T "worked_on" }}</dt>
+    <dd>{{ . }}</dd>
+  </div>
+  {{- end }}
+</dl>
+{{- with $d.note }}
+<p class="stamp-note">{{ . }}</p>
+{{- end }}

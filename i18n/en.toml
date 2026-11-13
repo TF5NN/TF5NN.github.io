@@ -1,0 +1,65 @@
+# The small fixed pieces of text on the English side of the site.
+
+skip = "Skip to content"
+home = "home"
+language = "Language"
+main_menu = "Main"
+
+posted = "Posted"
+worked_on = "Worked on"
+written_next_year = "Written up the following year"
+
+apps_heading = "Apps I have made"
+open_app = "Open the app ↗"
+source_github = "Source on GitHub ↗"
+overview = "Overview"
+
+latest_posts = "Latest posts"
+browse_by_tag = "Browse by tag"
+no_posts = "No posts yet."
+older_post = "Older post"
+newer_post = "Newer post"
+older_posts = "Older posts →"
+newer_posts = "← Newer posts"
+page_of = "Page {{ .Page }} of {{ .Total }}"
+more_posts = "More posts"
+
+tags_lede = "Every post carries one or more tags. Pick one to see only those posts."
+no_tags = "No tags yet."
+
+rss = "RSS feed"
+email_at = "at"
+
+# Shown on a page that is borrowed from the other language.
+only_in_is = "Icelandic only"
+only_in_en = "English only"
+notice_is = "This page is written in Icelandic. There is no English version yet."
+notice_en = "This page is written in English."
+
+# Shown on a translated post.
+translated_from_is = "Translated from Icelandic."
+translated_from_is_ai = "Translated from Icelandic with AI, checked by me."
+translated_from_en = "Translated from English."
+translated_from_en_ai = "Translated from English with AI, checked by me."
+read_original = "Read the original"
+
+notfound_title = "That page is not here"
+notfound_text = "The address may be mistyped, or the page was moved."
+notfound_home = "Go to the front page"
+notfound_posts = "Browse all posts"
+
+[written_years_later]
+one = "Written up {{ .Count }} year later"
+other = "Written up {{ .Count }} years later"
+
+[all_posts]
+one = "The {{ .Count }} post"
+other = "All {{ .Count }} posts"
+
+[posts_count]
+one = "{{ .Count }} post"
+other = "{{ .Count }} posts"
+
+[posts_with_tag]
+one = "{{ .Count }} post with this tag."
+other = "{{ .Count }} posts with this tag."

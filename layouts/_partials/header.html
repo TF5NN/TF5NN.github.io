@@ -1,0 +1,19 @@
+<header class="site-header">
+  <a class="brand" href="{{ site.Home.RelPermalink }}" aria-label="{{ site.Title }}, {{ T "home" }}">
+    <span class="brand-icon">{{ partial "mark.html" . }}</span>
+    <span class="brand-text">{{ site.Title }}<small>{{ site.Params.tagline }}</small></span>
+  </a>
+  <nav class="site-nav" aria-label="{{ T "main_menu" }}">
+    {{- $current := . }}
+    {{- range site.Menus.main }}
+    {{- $active := or ($current.IsMenuCurrent .Menu .) ($current.HasMenuCurrent .Menu .) }}
+    {{- with .Page }}{{ if and (not $current.IsHome) (or (eq $current .) ($current.IsDescendant .)) }}{{ $active = true }}{{ end }}{{ end }}
+    {{- if and (eq .Identifier "tags") (in (slice "taxonomy" "term") $current.Kind) }}{{ $active = true }}{{ end }}
+    <a href="{{ .URL }}"{{ if $active }} aria-current="page"{{ end }}>{{ .Name }}</a>
+    {{- end }}
+  </nav>
+  {{ partial "lang-switch.html" . }}
+  {{- with site.Params.github }}
+  <a class="callsign" href="{{ . }}" rel="me noopener">GitHub ↗</a>
+  {{- end }}
+</header>

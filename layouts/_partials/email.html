@@ -1,0 +1,11 @@
+{{- /*
+  Your email address, guarded from simple spam bots.
+  The page itself only holds the address scrambled, and as "name (at) domain".
+  A tiny script turns it into a normal clickable address in the reader's browser.
+  The address is set in hugo.toml (email_user and email_domain).
+*/ -}}
+{{- $u := site.Params.email_user -}}
+{{- $d := site.Params.email_domain -}}
+{{- if and $u $d -}}
+<a class="email" href="#" data-e="{{ printf "%s|%s" ($u | base64Encode) ($d | base64Encode) }}">{{ $u }} ({{ T "email_at" }}) {{ $d }}</a><script>(function(a){var p=a.getAttribute('data-e').split('|'),e=atob(p[0])+'@'+atob(p[1]);a.href='mailto:'+e;a.textContent=e;})(document.currentScript.previousElementSibling)</script>
+{{- end -}}

@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="{{ site.Language.Locale | default site.Language.Lang }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ if .IsHome }}{{ site.Title }} · {{ site.Params.tagline }}{{ else }}{{ .Title }} · {{ site.Title }}{{ end }}</title>
+  {{- $desc := .Params.summary | default .Description | default (cond .IsHome site.Params.description (.Summary | plainify | htmlUnescape | truncate 160)) | default site.Params.description }}
+  <meta name="description" content="{{ $desc }}">
+  <meta name="author" content="{{ site.Params.author }}">
+  <meta name="theme-color" content="#214e3a">
+  <meta property="og:title" content="{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }}{{ end }}">
+  <meta property="og:description" content="{{ $desc }}">
+  <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
+  <meta property="og:url" content="{{ .Permalink }}">
+  {{- with .Params.cover }}{{ $i := partial "img.html" (dict "src" . "width" 1200 "page" $) }}
+  <meta property="og:image" content="{{ $i.src | absURL }}">
+  {{- end }}
+  {{- partial "head-lang.html" . }}
+  <link rel="icon" type="image/svg+xml" href="{{ "favicon.svg" | relURL }}">
+  {{- with site.GetPage "/posts" }}{{ with .OutputFormats.Get "rss" }}
+  <link rel="alternate" type="application/rss+xml" title="{{ site.Title }} posts" href="{{ .RelPermalink }}">
+  {{- end }}{{ end }}
+  <!-- Same two typefaces as the apps. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;450;500;550;600;650;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+  {{- with resources.Get "css/site.css" | fingerprint }}
+  <link rel="stylesheet" href="{{ .RelPermalink }}">
+  {{- end }}
+</head>
+<body>
+  <a class="skip" href="#main">{{ T "skip" }}</a>
+  <div class="shell">
+    {{ partial "header.html" . }}
+    <main id="main">
+      {{ block "main" . }}{{ end }}
+    </main>
+    {{ partial "footer.html" . }}
+  </div>
+  {{- with site.Params.goatcounter }}
+  <!-- Anonymous visit counting (GoatCounter): no cookies, country-level only. -->
+  <script data-goatcounter="https://{{ . }}.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+  {{- end }}
+</body>
+</html>

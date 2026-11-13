@@ -1,0 +1,27 @@
+{{ define "main" }}
+{{- $src := partial "lang.html" . }}
+{{- $foreign := ne $src site.Language.Lang }}
+<article class="post">
+  <header class="post-head">
+    <p class="crumb"><a href="{{ .Parent.RelPermalink }}">{{ .Parent.LinkTitle }}</a></p>
+    {{ partial "lang-notice.html" . }}
+    <h1{{ if $foreign }} lang="{{ $src }}"{{ end }}>{{ .Title }}</h1>
+    <div class="post-meta">
+      {{ partial "stamp.html" . }}
+    </div>
+    {{ partial "translated.html" . }}
+    {{ partial "tags.html" . }}
+  </header>
+  {{- with .Params.cover }}
+  {{- $i := partial "img.html" (dict "src" . "width" 1000 "page" $) }}
+  <figure class="post-cover">
+    <img src="{{ $i.src }}"{{ with $i.src2 }} srcset="{{ $i.src }} 1x, {{ . }} 2x"{{ end }} alt="{{ $.Params.cover_alt | default "" }}"{{ with $i.width }} width="{{ . }}"{{ end }}{{ with $i.height }} height="{{ . }}"{{ end }}>
+  </figure>
+  {{- end }}
+  <div class="prose"{{ if $foreign }} lang="{{ $src }}"{{ end }}>{{ .Content }}</div>
+  <nav class="post-nav" aria-label="{{ T "more_posts" }}">
+    {{- with .PrevInSection }}<a class="post-nav-older" href="{{ .RelPermalink }}"><small>{{ T "older_post" }}</small>{{ .Title }}</a>{{ else }}<span></span>{{ end }}
+    {{- with .NextInSection }}<a class="post-nav-newer" href="{{ .RelPermalink }}"><small>{{ T "newer_post" }}</small>{{ .Title }}</a>{{ else }}<span></span>{{ end }}
+  </nav>
+</article>
+{{ end }}

@@ -1,0 +1,40 @@
+{{ define "main" }}
+<section class="intro">
+  <h1>{{ .Params.headline | default .Title }}{{ with .Params.headline_second }} <span>{{ . }}</span>{{ end }}</h1>
+  {{- with .Content }}<div class="intro-text">{{ . }}</div>{{ end }}
+</section>
+
+{{- with site.GetPage "/apps" }}{{ with .Sections.ByWeight }}
+<section class="apps-strip" aria-labelledby="apps-heading">
+  <h2 id="apps-heading" class="label">{{ T "apps_heading" }}</h2>
+  <div class="apps-grid">
+    {{- range . }}
+    {{ partial "app-card.html" . }}
+    {{- end }}
+  </div>
+</section>
+{{- end }}{{ end }}
+
+{{- $posts := where site.RegularPages "Section" "posts" }}
+<section class="log" aria-labelledby="log-heading">
+  <div class="log-head">
+    <h2 id="log-heading">{{ T "latest_posts" }}</h2>
+    {{- with site.Taxonomies.tags.ByCount }}
+    <ul class="tags tags-count" aria-label="{{ T "browse_by_tag" }}">
+      {{- range . }}
+      <li><a class="tag" href="{{ .Page.RelPermalink }}">{{ partial "tag-name.html" .Page }} <span>{{ .Count }}</span></a></li>
+      {{- end }}
+    </ul>
+    {{- end }}
+  </div>
+  {{- $n := site.Params.homePosts | default 8 }}
+  {{- range first $n $posts }}
+  {{ partial "entry.html" (dict "page" . "h" "h3") }}
+  {{- else }}
+  <p class="empty">{{ T "no_posts" }}</p>
+  {{- end }}
+  {{- if gt (len $posts) $n }}
+  <p class="more"><a href="{{ (site.GetPage "/posts").RelPermalink }}">{{ T "all_posts" (len $posts) }}</a></p>
+  {{- end }}
+</section>
+{{ end }}

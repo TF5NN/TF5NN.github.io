@@ -1,0 +1,18 @@
+{{ define "main" }}
+<header class="page-head">
+  <h1>{{ .Title }}</h1>
+  <p class="lede">{{ T "tags_lede" }}</p>
+</header>
+<ul class="tag-index">
+  {{- range .Data.Terms.Alphabetical }}
+  <li>
+    <a href="{{ .Page.RelPermalink }}">
+      <span class="tag-index-name">{{ partial "tag-name.html" .Page }}</span>
+      <span class="tag-index-count">{{ T "posts_count" .Count }}</span>
+    </a>
+  </li>
+  {{- else }}
+  <li class="empty">{{ T "no_tags" }}</li>
+  {{- end }}
+</ul>
+{{ end }}

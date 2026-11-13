@@ -1,0 +1,14 @@
+{{- /*
+  The line under a translated post, for example
+  "Translated from Icelandic with AI, checked by me. Read the original."
+  It appears when the post has:   translated_from: is   (or en)
+  and, if AI did the translating: translated_by: ai
+*/ -}}
+{{- $from := .Params.translated_from -}}
+{{- if and $from (eq (partial "lang.html" .) site.Language.Lang) -}}
+  {{- $key := printf "translated_from_%s" $from -}}
+  {{- if eq (lower (.Params.translated_by | default "")) "ai" }}{{ $key = printf "%s_ai" $key }}{{ end }}
+<p class="translated">{{ T $key }}
+  {{- range .Translations }}{{ if eq .Language.Lang $from }} <a href="{{ .RelPermalink }}" lang="{{ site.Language.Lang }}" hreflang="{{ $from }}">{{ T "read_original" }}</a>{{ end }}{{ end -}}
+</p>
+{{- end -}}

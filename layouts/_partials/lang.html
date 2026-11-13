@@ -1,0 +1,15 @@
+{{- /*
+  Which language a page is actually written in: "en" or "is".
+  It looks at which folder the file lives in (content/en or content/is).
+  Pages the site makes by itself, such as tag pages, count as the current language.
+*/ -}}
+{{- $lang := .Language.Lang -}}
+{{- with .File -}}
+  {{- $file := replace .Filename "\\" "/" -}}
+  {{- range hugo.Sites -}}
+    {{- if strings.Contains $file (printf "/content/%s/" .Language.Lang) -}}
+      {{- $lang = .Language.Lang -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- return $lang -}}

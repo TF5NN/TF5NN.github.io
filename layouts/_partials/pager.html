@@ -1,0 +1,7 @@
+{{- with .Paginator }}{{ if gt .TotalPages 1 }}
+<nav class="pager" aria-label="{{ T "more_posts" }}">
+  {{ if .HasPrev }}<a href="{{ .Prev.URL }}">{{ T "newer_posts" }}</a>{{ else }}<span></span>{{ end }}
+  <span class="pager-count">{{ T "page_of" (dict "Page" .PageNumber "Total" .TotalPages) }}</span>
+  {{ if .HasNext }}<a href="{{ .Next.URL }}">{{ T "older_posts" }}</a>{{ else }}<span></span>{{ end }}
+</nav>
+{{ end }}{{ end -}}
