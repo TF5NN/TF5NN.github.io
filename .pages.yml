@@ -187,7 +187,7 @@ content:
     type: group
     items:
       - name: efhw-overview
-        label: Antenna Visualizer, overview
+        label: Feedpoint, overview
         type: file
         path: content/en/apps/hf-antenna-impedance-visualizer/_index.md
         format: yaml-frontmatter
@@ -199,7 +199,7 @@ content:
           - { name: weight, label: Order (lower comes first), type: number }
           - { name: body, label: Text, type: rich-text, options: { format: markdown } }
       - name: efhw-instructions
-        label: Antenna Visualizer, instructions
+        label: Feedpoint, instructions
         type: file
         path: content/en/apps/hf-antenna-impedance-visualizer/instructions.md
         format: yaml-frontmatter
@@ -208,7 +208,7 @@ content:
           - { name: weight, label: Order (lower comes first), type: number }
           - { name: body, label: Text, type: rich-text, options: { format: markdown } }
       - name: efhw-history
-        label: Antenna Visualizer, how it came to be
+        label: Feedpoint, how it came to be
         type: file
         path: content/en/apps/hf-antenna-impedance-visualizer/history.md
         format: yaml-frontmatter

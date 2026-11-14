@@ -1,12 +1,12 @@
 ---
-title: HF Antenna Impedance Visualizer
+title: Feedpoint
 summary: See how the feedpoint impedance of end-fed and dipole wire antennas changes with wire length and feedpoint position, across the HF bands from 160 m to 6 m.
 app_url: https://tf5nn.github.io/HF-Antenna-Impedance-Visualizer/
 repo_url: https://github.com/TF5NN/HF-Antenna-Impedance-Visualizer
 weight: 10
 ---
 
-An interactive, browser-based educational tool for amateur radio operators. It draws the impedance a wire antenna presents at its feedpoint, so you can see why some wire lengths are easy to match on several bands and others are not.
+Feedpoint is an HF antenna impedance visualizer: an interactive, browser-based educational tool for amateur radio operators. It draws the impedance a wire antenna presents at its feedpoint, so you can see why some wire lengths are easy to match on several bands and others are not.
 
 ## What it can do
 
