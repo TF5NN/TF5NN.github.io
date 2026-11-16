@@ -1,0 +1,31 @@
+---
+title: Sightline
+summary: Terrain profiles for radio links. Place two points on the map and see whether the ground is in the way, and whether a radio link between them would probably work.
+app_url: https://tf5nn.github.io/sightline/
+repo_url: https://github.com/TF5NN/sightline
+weight: 30
+---
+
+Sightline draws the ground along the straight path between two points and the line of sight between the two antennas. It reads 2 m elevation data straight from the public ArcticDEM archive, so it works for Iceland and other land north of about 60°N.
+
+## What it can do
+
+- **Terrain profile** between any two points, with the Earth's curve included and blocked ground marked in red, on the chart and on the map.
+- **Antenna heights** at both ends, for a mast, a roof or a handheld.
+- **Radio link estimate**: choose a band, a radio and an antenna, and get the received signal, the margin and a plain verdict.
+- **Presets** for 2 m and 70 cm FM and for 868 MHz LoRa mesh (MeshCore and Meshtastic), with your own figures under Advanced.
+- **Fresnel zone** on the profile, with grazing stretches marked in amber.
+- **Works on a phone**: slide a finger along the profile to read the heights.
+- **Share a path**: the page address holds the whole setup.
+
+## Good to know
+
+The verdict is an estimate from a simple model. It has been right about ground blocking a path, and too optimistic on blocked paths in town. Read the margin as give or take 10 dB. [How it works and how far to trust it](https://tf5nn.github.io/sightline/how.html) has the details.
+
+The terrain data is a surface model: buildings and trees count as ground, as they stood when the satellite images were taken.
+
+Your points stay in your browser and in the page address.
+
+## Credits
+
+Terrain: ArcticDEM, Polar Geospatial Center (CC BY 4.0). Map: OpenStreetMap contributors.

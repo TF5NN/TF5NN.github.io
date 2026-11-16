@@ -329,18 +329,40 @@ main {
 .apps-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 22px 40px;
+  gap: 36px 40px;
 }
 .label + .apps-grid {
-  margin-top: 14px;
+  margin-top: 10px;
 }
 .app {
   display: flex;
   flex-direction: column;
+  position: relative;
 }
-.app + .app {
+/* Dividers between app cards, for any number of apps: each card draws a line in the
+   gap to its left and in the gap above it. The grid clips the lines that fall outside
+   it, so the first column and the first row get none. */
+.apps-grid {
+  overflow: hidden;
+  padding: 4px;
+  margin: -4px;
+}
+.app::before,
+.app::after {
+  content: "";
+  position: absolute;
+}
+.app::before {
+  left: -20px;
+  top: 0;
+  bottom: 0;
   border-left: 1px solid var(--soft-line);
-  padding-left: 40px;
+}
+.app::after {
+  top: -18px;
+  left: 0;
+  right: 0;
+  border-top: 1px solid var(--soft-line);
 }
 .app-name {
   font-size: 20px;
@@ -906,9 +928,11 @@ main {
     grid-template-columns: 1fr;
     gap: 20px;
   }
+  .app::before,
+  .app::after {
+    display: none;
+  }
   .app + .app {
-    border-left: 0;
-    padding-left: 0;
     border-top: 1px solid var(--soft-line);
     padding-top: 20px;
   }
