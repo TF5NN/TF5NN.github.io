@@ -8,20 +8,69 @@
 :root {
   --paper: #f7f8f3;
   --surface: #fcfdf8;
+  --tint: #f0f4ec;
   --soft: #edf2e9;
   --soft-line: #d5e0d4;
   --line: #dfe5de;
+  --line-strong: #cdd9ce;
+  --line-green: #dce4d4;
+  --ink-deep: #142f32;
   --ink: #203b3d;
+  --on-ink: #fff; /* text on an ink ground */
+  --text: #55665c;
   --muted: #64736c;
+  --faint: #bbc5b0;
+  --green-deep: #1f6a53;
   --green: #267c62;
+  --leaf-deep: #4f8c63;
   --leaf: #5e9b71;
   --mint: #bce3bc;
+  --logo-tile: #203b3d;
   --amber-bg: #f7f1df;
   --amber-line: #e0d7bd;
   --amber-ink: #765920;
+  --blue-soft: #e9edf2;
+  --blue-line: #d3dbe4;
+  --blue-ink: #4f6781;
   --mono: 'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace;
   --sans: 'DM Sans', 'Segoe UI', system-ui, Arial, sans-serif;
   --gutter: 46px;
+}
+
+/*
+  Dark mode: every colour above with a second value, taken from the dark shades of the apps
+  (Northbound's docs/STYLE.md is the style guide). Nothing else in this file knows about
+  themes. The theme is set on <html> by the small script in layouts/baseof.html: the
+  visitor's remembered choice, shared with the apps, otherwise the device's setting.
+*/
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --paper: #0f1917;
+  --surface: #15221f;
+  --tint: #19261f;
+  --soft: #1c3229;
+  --soft-line: #30433c;
+  --line: #263732;
+  --line-strong: #30433c;
+  --line-green: #2d4138;
+  --ink-deep: #f3f7f1;
+  --ink: #e4ece4;
+  --on-ink: #0f1917;
+  --text: #b3c6ad;
+  --muted: #9bb1a2;
+  --faint: #54635b;
+  --green-deep: #8fd3b4;
+  --green: #53b893;
+  --leaf-deep: #72b98d;
+  --leaf: #67ab82;
+  --mint: #bce3bc;
+  --logo-tile: #1f4236;
+  --amber-bg: #2b2718;
+  --amber-line: #4d442a;
+  --amber-ink: #e3ba70;
+  --blue-soft: #1f2b38;
+  --blue-line: #33455a;
+  --blue-ink: #a0b7d2;
 }
 
 *,
@@ -68,7 +117,7 @@ a {
   -webkit-tap-highlight-color: transparent;
 }
 a:focus-visible {
-  outline: 2px solid #287c64;
+  outline: 2px solid var(--green);
   outline-offset: 4px;
   border-radius: 2px;
 }
@@ -81,7 +130,7 @@ code {
   left: -999px;
   top: 8px;
   background: var(--ink);
-  color: #fff;
+  color: var(--on-ink);
   padding: 8px 12px;
   border-radius: 4px;
   z-index: 10;
@@ -134,7 +183,7 @@ main {
   width: 40px;
   height: 40px;
   border-radius: 11px;
-  background: var(--ink);
+  background: var(--logo-tile);
   color: var(--mint);
 }
 .brand-icon svg {
@@ -167,7 +216,7 @@ main {
 .callsign {
   font: 500 13px var(--mono);
   padding: 7px 10px;
-  border: 1px solid #cdd9ce;
+  border: 1px solid var(--line-strong);
   border-radius: 4px;
   white-space: nowrap;
 }
@@ -176,10 +225,45 @@ main {
   border-color: var(--leaf);
 }
 
+/* Light or dark: a small button at the end of the top bar. Moon in the light, sun in the dark. */
+.theme-toggle {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 1px solid var(--line-strong);
+  border-radius: 4px;
+  background: none;
+  color: var(--muted);
+  cursor: pointer;
+}
+.theme-toggle:hover {
+  background: var(--surface);
+  border-color: var(--leaf);
+  color: var(--ink);
+}
+.theme-toggle svg {
+  width: 15px;
+  height: 15px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.theme-toggle .sun,
+:root[data-theme='dark'] .theme-toggle .moon {
+  display: none;
+}
+:root[data-theme='dark'] .theme-toggle .sun {
+  display: block;
+}
+
 /* EN / IS switch */
 .lang-switch {
   display: flex;
-  border: 1px solid #cdd9ce;
+  border: 1px solid var(--line-strong);
   border-radius: 4px;
   overflow: hidden;
 }
@@ -189,7 +273,7 @@ main {
   color: var(--muted);
 }
 .lang-switch a + a {
-  border-left: 1px solid #cdd9ce;
+  border-left: 1px solid var(--line-strong);
 }
 .lang-switch a:hover {
   color: var(--ink);
@@ -197,7 +281,7 @@ main {
 }
 .lang-switch a[aria-current='true'] {
   background: var(--ink);
-  color: #fff;
+  color: var(--on-ink);
 }
 
 /* ─── Shared small pieces ─────────────────────── */
@@ -243,17 +327,17 @@ main {
   border-radius: 6px;
   background: var(--ink);
   border: 1px solid var(--ink);
-  color: #fff;
+  color: var(--on-ink);
   font-size: 13px;
   font-weight: 600;
   white-space: nowrap;
 }
 .button:hover {
-  background: #142f32;
+  background: var(--ink-deep);
 }
 .button-quiet {
   background: transparent;
-  border-color: #cdd9ce;
+  border-color: var(--line-strong);
   color: var(--ink);
 }
 .button-quiet:hover {
@@ -275,7 +359,7 @@ main {
   border-radius: 20px;
   border: 1.5px solid color-mix(in srgb, var(--green) 55%, transparent);
   background: color-mix(in srgb, var(--green) 8%, transparent);
-  color: #1f6a53;
+  color: var(--green-deep);
   font-size: 12px;
   font-weight: 650;
   line-height: 1.6;
@@ -303,7 +387,7 @@ main {
   text-wrap: balance;
 }
 .intro h1 > span {
-  color: #4f8c63;
+  color: var(--leaf-deep);
 }
 .intro-text {
   margin-top: 14px;
@@ -376,7 +460,7 @@ main {
 .app-summary {
   margin: 6px 0 16px;
   font-size: 14px;
-  color: #55665c;
+  color: var(--text);
   max-width: 48ch;
 }
 .app-links {
@@ -389,7 +473,7 @@ main {
   font-weight: 500;
 }
 .app-links a:not(.button) {
-  color: #1f6a53;
+  color: var(--green-deep);
   text-decoration: underline;
   text-decoration-color: color-mix(in srgb, var(--green) 40%, transparent);
   text-underline-offset: 3px;
@@ -434,7 +518,7 @@ main {
 }
 .entry-summary {
   margin-top: 6px;
-  color: #55665c;
+  color: var(--text);
   max-width: 64ch;
 }
 .entry-main .tags {
@@ -458,7 +542,7 @@ main {
   font-weight: 600;
 }
 .more a {
-  color: #1f6a53;
+  color: var(--green-deep);
 }
 .more a::after {
   content: ' →';
@@ -502,10 +586,10 @@ main {
   display: inline-block;
   margin-top: 11px;
   padding: 3px 8px;
-  border: 1px solid #d3dbe4;
-  background: #e9edf2;
+  border: 1px solid var(--blue-line);
+  background: var(--blue-soft);
   border-radius: 4px;
-  color: #4f6781;
+  color: var(--blue-ink);
   font-size: 11.5px;
   font-weight: 550;
   line-height: 1.45;
@@ -516,9 +600,9 @@ main {
 .note.lang-note {
   max-width: 68ch;
   margin: 0 0 18px;
-  border-color: #d3dbe4;
-  background: #e9edf2;
-  color: #4f6781;
+  border-color: var(--blue-line);
+  background: var(--blue-soft);
+  color: var(--blue-ink);
 }
 .app-head + .note.lang-note {
   margin: 24px 0 0;
@@ -529,7 +613,7 @@ main {
   color: var(--muted);
 }
 .translated a {
-  color: #1f6a53;
+  color: var(--green-deep);
   text-decoration: underline;
   text-underline-offset: 3px;
 }
@@ -541,7 +625,7 @@ main {
   gap: 16px;
   padding-top: 24px;
   font-weight: 600;
-  color: #1f6a53;
+  color: var(--green-deep);
 }
 .pager-count {
   font: 400 12px var(--mono);
@@ -680,7 +764,7 @@ main {
   justify-content: space-between;
   gap: 12px;
   padding: 14px 16px;
-  border: 1px solid #dce4d4;
+  border: 1px solid var(--line-green);
   border-radius: 7px;
   background: var(--surface);
 }
@@ -769,7 +853,7 @@ main {
   margin-top: 0.55em;
 }
 .prose a {
-  color: #1f6a53;
+  color: var(--green-deep);
   text-decoration: underline;
   text-decoration-color: color-mix(in srgb, var(--green) 45%, transparent);
   text-underline-offset: 3px;
@@ -812,19 +896,19 @@ main {
   margin-right: 0;
   padding: 2px 0 2px 18px;
   border-left: 3px solid var(--mint);
-  color: #55665c;
+  color: var(--text);
 }
 .prose :not(pre) > code {
   padding: 1px 5px;
   border: 1px solid var(--line);
   border-radius: 4px;
-  background: #f0f4ec;
+  background: var(--tint);
 }
 .prose pre {
   padding: 14px 16px;
   border: 1px solid var(--line);
   border-radius: 7px;
-  background: #f0f4ec;
+  background: var(--tint);
   overflow-x: auto;
   font-size: 14px;
   line-height: 1.6;
@@ -880,7 +964,7 @@ main {
 }
 .site-footer .slash {
   margin: 0 8px;
-  color: #bbc5b0;
+  color: var(--faint);
 }
 
 /* ─── Smaller screens ─────────────────────────── */
@@ -902,6 +986,21 @@ main {
 @media (max-width: 720px) {
   :root {
     --gutter: 18px;
+  }
+  /* The name gives way, so the language switch and the theme button stay beside it on one row. */
+  .site-header {
+    gap: 10px 12px;
+  }
+  .brand {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+  .brand-text {
+    min-width: 0;
+  }
+  .brand-text small {
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   .intro {
     padding: 30px 0 26px;

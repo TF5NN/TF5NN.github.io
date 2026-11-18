@@ -27,6 +27,40 @@
   {{- with resources.Get "css/site.css" | fingerprint }}
   <link rel="stylesheet" href="{{ .RelPermalink }}">
   {{- end }}
+  <!-- Light or dark before the first paint: the visitor's remembered choice (shared with the apps on
+       this site), otherwise the device's setting. The button at the end of the top bar switches it. -->
+  <script>
+  (function () {
+    var KEY = 'tf5nn-theme';
+    var device = window.matchMedia('(prefers-color-scheme: dark)');
+    function chosen() {
+      try { var v = localStorage.getItem(KEY); return v === 'light' || v === 'dark' ? v : null; } catch (e) { return null; }
+    }
+    function current() { return chosen() || (device.matches ? 'dark' : 'light'); }
+    function apply() {
+      var theme = current();
+      document.documentElement.dataset.theme = theme;
+      var bar = document.querySelector('meta[name="theme-color"]');
+      if (bar) bar.setAttribute('content', theme === 'dark' ? '#0f1917' : '#214e3a');
+      document.querySelectorAll('.theme-toggle').forEach(function (button) {
+        var words = theme === 'dark' ? button.dataset.toLight : button.dataset.toDark;
+        button.setAttribute('aria-label', words);
+        button.title = words;
+      });
+    }
+    apply();
+    device.addEventListener('change', apply);
+    document.addEventListener('DOMContentLoaded', function () {
+      apply();
+      document.querySelectorAll('.theme-toggle').forEach(function (button) {
+        button.addEventListener('click', function () {
+          try { localStorage.setItem(KEY, current() === 'dark' ? 'light' : 'dark'); } catch (e) {}
+          apply();
+        });
+      });
+    });
+  })();
+  </script>
 </head>
 <body>
   <a class="skip" href="#main">{{ T "skip" }}</a>
