@@ -15,5 +15,6 @@ weight: 20
 | v3.1.0 | 11 Nov 2026 | Height above ground in Dipole mode |
 | v3.2.0 | 14 Nov 2026 | Renamed Feedpoint, with a logo and links to this site |
 | v3.2.1 | 15 Nov 2026 | Checked against NEC-2 on 160 m and 80 m; warns when the wire is too low for the height figure |
+| v3.3.0 | 18 Nov 2026 | Dark mode, following your device, with a button to switch |
 
 The full list of changes is in the [changelog on GitHub](https://github.com/TF5NN/HF-Antenna-Impedance-Visualizer/blob/main/CHANGELOG.md).
