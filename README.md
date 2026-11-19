@@ -162,21 +162,21 @@ The web editor offers a fixed list so the spelling stays the same. To add a tag 
 
 Copy one of the folders in `content/en/apps/`, rename it, and change the text and the two links at the top of its `_index.md`. It shows up on the front page and the Apps page by itself, in both languages.
 
-## Keeping it private, and going live later
+## Publishing
 
-A free GitHub account can only publish a site from a public repository. So:
+The site is live at `https://tf5nn.github.io/`. Every change to this repository publishes itself a minute or two later, through the **Build and publish** step under the **Actions** tab. If a change does not show up, look there first: a red mark means the build failed, and clicking it shows why.
 
-**Private (now).** Create a repository named `TF5NN.github.io`, set it to **Private**, and upload this folder. Nothing is published. The publishing step is written to do nothing while the repository is private.
+A free GitHub account can only publish from a public repository, so this repository has to stay public. Posts marked `draft: true` are in the repository but not on the site.
 
-**Live (when you are ready).**
+The repository name matters. `TF5NN.github.io` is the one name that puts the site at the top address, with the apps sitting below it:
 
-1. Repository **Settings → General → Danger Zone → Change visibility → Public**.
-2. **Settings → Pages → Source: GitHub Actions**.
-3. **Actions** tab → **Build and publish** → **Run workflow**.
+| App | Address | Repository |
+|---|---|---|
+| Feedpoint | `/HF-Antenna-Impedance-Visualizer/` | `TF5NN/HF-Antenna-Impedance-Visualizer` |
+| Northbound | `/sat-track/` | `TF5NN/sat-track` |
+| Sightline | `/sightline/` | `TF5NN/sightline` |
 
-A minute or two later the site is at `https://tf5nn.github.io/`. From then on, every change publishes itself.
-
-The repository name matters. `TF5NN.github.io` is the one name that puts the site at the top address, with the apps already sitting below it at `/sat-track/` and `/HF-Antenna-Impedance-Visualizer/`.
+The shared terrain files used by Northbound and Sightline are at `/terrain/`, from `TF5NN/terrain`.
 
 ## Your own domain, later
 
