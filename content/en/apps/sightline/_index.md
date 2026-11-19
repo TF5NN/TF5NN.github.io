@@ -15,7 +15,11 @@ Sightline draws the ground along the straight path between two points and the li
 - **Radio link estimate**: choose a band, a radio and an antenna, and get the received signal, the margin and a plain verdict.
 - **Presets** for 2 m and 70 cm FM and for 868 MHz LoRa mesh (MeshCore and Meshtastic), with your own figures under Advanced.
 - **Fresnel zone** on the profile, with grazing stretches marked in amber.
+- **Station layers**: show fixed stations on the map, starting with ÍRA's repeaters. Tap one to see how to work it, or use it as point A or B with its power, antenna and height filled in.
+- **Stations seen from A**: with a station layer showing, placing point A colours each station by a first link estimate: green should work, amber is marginal, red unlikely. Iceland only.
+- **Look around**: the skyline as seen from point A, with compass bearings, the stations and point B marked where they stand. Drag it to turn. Iceland only.
 - **Works on a phone**: slide a finger along the profile to read the heights.
+- **Light or dark**, following your device, with a button to switch. The choice carries over to the other apps.
 - **Share a path**: the page address holds the whole setup.
 
 ## Good to know
