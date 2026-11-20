@@ -726,6 +726,17 @@ main {
   border-radius: 8px;
   border: 1px solid var(--line);
 }
+.post-video {
+  margin-top: 28px;
+}
+.post-video iframe {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--soft);
+}
 .post-nav {
   display: grid;
   grid-template-columns: 1fr 1fr;

@@ -91,6 +91,7 @@ The text of the post goes here. It can be one sentence or ten pages.
 | `tags` | One or more tags. | No |
 | `cover` | The main photo, shown at the top and as the small picture in lists. | No |
 | `cover_alt` | One sentence describing the main photo for people who cannot see it. | No |
+| `video` | A YouTube link (or just the video ID), shown under the main photo. Any normal YouTube address works, including `youtu.be` and Shorts links. | No |
 | `summary` | Text shown under the title in lists. Without it, the first paragraph is used. | No |
 | `draft: true` | Keeps the post off the site until you remove the line. | No |
 | `translated_from`, `translated_by` | Only on a translation. See above. | No |
