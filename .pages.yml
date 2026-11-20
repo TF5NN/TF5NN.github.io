@@ -72,6 +72,10 @@ content:
         label: Main photo description
         description: One sentence saying what is in the photo, for people who cannot see it. Optional.
         type: string
+      - name: video
+        label: YouTube video
+        description: Paste the YouTube link (or just the video ID). It is shown under the main photo. Optional.
+        type: string
       - name: summary
         label: Short summary
         description: Shown under the title in lists. Leave empty to use the first paragraph.
@@ -159,6 +163,10 @@ content:
       - name: cover_alt
         label: Lýsing á aðalmynd
         description: Ein setning um hvað er á myndinni, fyrir þá sem sjá hana ekki. Má sleppa.
+        type: string
+      - name: video
+        label: YouTube myndband
+        description: Límdu YouTube-hlekkinn hér (eða bara auðkenni myndbandsins). Það birtist undir aðalmyndinni. Má sleppa.
         type: string
       - name: summary
         label: Stutt samantekt

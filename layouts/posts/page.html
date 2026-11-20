@@ -18,6 +18,13 @@
     <img src="{{ $i.src }}"{{ with $i.src2 }} srcset="{{ $i.src }} 1x, {{ . }} 2x"{{ end }} alt="{{ $.Params.cover_alt | default "" }}"{{ with $i.width }} width="{{ . }}"{{ end }}{{ with $i.height }} height="{{ . }}"{{ end }}>
   </figure>
   {{- end }}
+  {{- with .Params.video }}
+  {{- with partial "youtube-id.html" . }}
+  <figure class="post-video">
+    <iframe src="https://www.youtube-nocookie.com/embed/{{ . }}" title="YouTube: {{ $.Title }}" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+  </figure>
+  {{- end }}
+  {{- end }}
   <div class="prose"{{ if $foreign }} lang="{{ $src }}"{{ end }}>{{ .Content }}</div>
   <nav class="post-nav" aria-label="{{ T "more_posts" }}">
     {{- with .PrevInSection }}<a class="post-nav-older" href="{{ .RelPermalink }}"><small>{{ T "older_post" }}</small>{{ .Title }}</a>{{ else }}<span></span>{{ end }}
