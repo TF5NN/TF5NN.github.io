@@ -156,11 +156,23 @@ tag_metalworking = "Málmsmíði"
 
 The part after `tag_` is the tag in lowercase with dashes for spaces. A tag without such a line is shown as written, which suits names like SOTA and POTA.
 
-The web editor offers a fixed list so the spelling stays the same. To add a tag to that list, open `.pages.yml`, find `values:` under `tags` (it appears twice, once per language), and add a line in both.
+The web editor offers a fixed list so the spelling stays the same. To add a tag to that list, open `.pages.yml`, find `values:` under `tags` (it appears twice, once per language), and add a line in both. The app pages have the same list on one line each, `values: [HAM radio, SOTA, ...]`; add the new tag there too.
+
+### Tags on apps
+
+Apps carry tags the same way posts do, in a `tags:` line at the top of the app's `_index.md`:
+
+```
+tags: ["HAM radio", "Antennas"]
+```
+
+They share the posts' tags, so a tag page such as "HAM radio" shows the apps with that tag above the posts, and the Tags page counts both ("2 posts · 3 apps"). The Apps page gets a row of tag buttons at the top; pressing one shows only the apps with that tag, and the address (for example `/apps/?tag=ham-radio`) can be shared. The row only appears once the apps use two or more different tags.
+
+If an app also has an Icelandic `_index.md` under `content/is/apps/`, give it the same `tags:` line.
 
 ## Adding another app
 
-Copy one of the folders in `content/en/apps/`, rename it, and change the text and the two links at the top of its `_index.md`. It shows up on the front page and the Apps page by itself, in both languages.
+Copy one of the folders in `content/en/apps/`, rename it, and change the text, the two links and the tags at the top of its `_index.md`. It shows up on the front page and the Apps page by itself, in both languages. To edit it in the web editor as well, copy one app's three entries in `.pages.yml` and change the folder name in them.
 
 If the app itself speaks both languages (Sightline does), add `app_lang: true` under the links. Its "Open the app" button then adds `?lang=en` or `?lang=is` to the address, so the app opens in the language the visitor is reading the site in. The site also remembers the language being read, so even a link to the app written inside a post follows it.
 
@@ -177,6 +189,7 @@ The repository name matters. `TF5NN.github.io` is the one name that puts the sit
 | Feedpoint | `/HF-Antenna-Impedance-Visualizer/` | `TF5NN/HF-Antenna-Impedance-Visualizer` |
 | Northbound | `/sat-track/` | `TF5NN/sat-track` |
 | Sightline | `/sightline/` | `TF5NN/sightline` |
+| Threadwise | `/threadwise/` | `TF5NN/threadwise` |
 
 The shared terrain files used by Northbound and Sightline are at `/terrain/`, from `TF5NN/terrain`.
 
@@ -199,7 +212,7 @@ Nothing in this folder needs to change. The apps move to the new domain too, at 
 
 Colours and fonts are at the top of `assets/css/site.css`. They are close to the values the apps use, so the site and the apps look like one place. The apps' style guide is `docs/STYLE.md` in the Northbound repository.
 
-**Light and dark.** The site follows the visitor's device: dark if their phone or computer is set to dark. The small sun or moon button at the end of the top bar switches it, and that choice is remembered in their browser and shared with the three apps, so switching in one place switches them all. Every colour at the top of `site.css` has a second, dark value in the block right under it; if you change a colour, change both. Photos are not altered.
+**Light and dark.** The site follows the visitor's device: dark if their phone or computer is set to dark. The small sun or moon button at the end of the top bar switches it, and that choice is remembered in their browser and shared with the apps, so switching in one place switches them all. Every colour at the top of `site.css` has a second, dark value in the block right under it; if you change a colour, change both. Photos are not altered.
 
 ## Your email address
 

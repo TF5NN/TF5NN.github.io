@@ -16,6 +16,9 @@ apps_heading = "Forrit sem ég hef búið til"
 open_app = "Opna forritið ↗"
 source_github = "Frumkóði á GitHub ↗"
 overview = "Yfirlit"
+# Síunin efst á Forrit-síðunni.
+filter_apps = "Sýna forrit eftir efnisorði"
+all_apps = "Öll"
 
 latest_posts = "Nýjustu færslur"
 browse_by_tag = "Skoða eftir efnisorði"
@@ -27,7 +30,8 @@ newer_posts = "← Nýrri færslur"
 page_of = "Síða {{ .Page }} af {{ .Total }}"
 more_posts = "Fleiri færslur"
 
-tags_lede = "Hver færsla hefur eitt eða fleiri efnisorð. Veldu eitt til að sjá aðeins þær færslur."
+tags_lede = "Færslur og forrit hafa efnisorð. Veldu eitt til að sjá allt sem hefur það."
+no_posts_with_tag = "Engar færslur með þetta efnisorð ennþá."
 no_tags = "Engin efnisorð ennþá."
 
 rss = "RSS-veita"
@@ -57,6 +61,9 @@ tag_ham-radio = "Amatörradíó"
 tag_3d-printing = "Þrívíddarprentun"
 tag_metalworking = "Málmsmíði"
 tag_hike = "Gönguferðir"
+tag_antennas = "Loftnet"
+tag_satellites = "Gervitungl"
+tag_maps = "Kort"
 
 [written_years_later]
 one = "Skrifað {{ .Count }} ári síðar"
@@ -69,6 +76,14 @@ other = "Allar færslur ({{ .Count }})"
 [posts_count]
 one = "{{ .Count }} færsla"
 other = "{{ .Count }} færslur"
+
+[apps_count]
+one = "{{ .Count }} forrit"
+other = "{{ .Count }} forrit"
+
+[apps_with_tag]
+one = "Forritið með þetta efnisorð"
+other = "{{ .Count }} forrit með þetta efnisorð"
 
 [posts_with_tag]
 one = "{{ .Count }} færsla með þetta efnisorð."

@@ -5,6 +5,8 @@ app_url: https://tf5nn.github.io/sightline/
 # The app speaks English and Icelandic: the button opens it in the language being read here.
 app_lang: true
 repo_url: https://github.com/TF5NN/sightline
+# Tags work the same as on posts. Write them in English in both languages.
+tags: ["HAM radio", "LoRa", "Maps"]
 weight: 30
 ---
 

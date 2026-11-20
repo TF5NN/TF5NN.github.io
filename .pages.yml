@@ -60,6 +60,10 @@ content:
             - 3D printing
             - Metalworking
             - Hike
+            - Antennas
+            - Satellites
+            - LoRa
+            - Maps
       - name: cover
         label: Main photo
         description: Shown at the top of the post and as the small picture in lists. Optional.
@@ -144,6 +148,10 @@ content:
             - 3D printing
             - Metalworking
             - Hike
+            - Antennas
+            - Satellites
+            - LoRa
+            - Maps
       - name: cover
         label: Aðalmynd
         description: Sést efst í færslunni og sem smámynd í listum. Má sleppa.
@@ -196,6 +204,7 @@ content:
           - { name: summary, label: One-line description, type: text }
           - { name: app_url, label: Link to the app, type: string }
           - { name: repo_url, label: Link to the source on GitHub, type: string }
+          - { name: tags, label: Tags, type: select, options: { multiple: true, values: [HAM radio, SOTA, POTA, 3D printing, Metalworking, Hike, Antennas, Satellites, LoRa, Maps] } }
           - { name: weight, label: Order (lower comes first), type: number }
           - { name: body, label: Text, type: rich-text, options: { format: markdown } }
       - name: efhw-instructions
@@ -226,6 +235,7 @@ content:
           - { name: summary, label: One-line description, type: text }
           - { name: app_url, label: Link to the app, type: string }
           - { name: repo_url, label: Link to the source on GitHub, type: string }
+          - { name: tags, label: Tags, type: select, options: { multiple: true, values: [HAM radio, SOTA, POTA, 3D printing, Metalworking, Hike, Antennas, Satellites, LoRa, Maps] } }
           - { name: weight, label: Order (lower comes first), type: number }
           - { name: body, label: Text, type: rich-text, options: { format: markdown } }
       - name: northbound-instructions
@@ -241,6 +251,70 @@ content:
         label: Northbound, how it came to be
         type: file
         path: content/en/apps/northbound/history.md
+        format: yaml-frontmatter
+        fields:
+          - { name: title, label: Title, type: string }
+          - { name: weight, label: Order (lower comes first), type: number }
+          - { name: body, label: Text, type: rich-text, options: { format: markdown } }
+      - name: sightline-overview
+        label: Sightline, overview
+        type: file
+        path: content/en/apps/sightline/_index.md
+        format: yaml-frontmatter
+        fields:
+          - { name: title, label: Name, type: string }
+          - { name: summary, label: One-line description, type: text }
+          - { name: app_url, label: Link to the app, type: string }
+          - { name: app_lang, label: "The app speaks English and Icelandic (open it in the language being read)", type: boolean }
+          - { name: repo_url, label: Link to the source on GitHub, type: string }
+          - { name: tags, label: Tags, type: select, options: { multiple: true, values: [HAM radio, SOTA, POTA, 3D printing, Metalworking, Hike, Antennas, Satellites, LoRa, Maps] } }
+          - { name: weight, label: Order (lower comes first), type: number }
+          - { name: body, label: Text, type: rich-text, options: { format: markdown } }
+      - name: sightline-instructions
+        label: Sightline, instructions
+        type: file
+        path: content/en/apps/sightline/instructions.md
+        format: yaml-frontmatter
+        fields:
+          - { name: title, label: Title, type: string }
+          - { name: weight, label: Order (lower comes first), type: number }
+          - { name: body, label: Text, type: rich-text, options: { format: markdown } }
+      - name: sightline-history
+        label: Sightline, how it came to be
+        type: file
+        path: content/en/apps/sightline/history.md
+        format: yaml-frontmatter
+        fields:
+          - { name: title, label: Title, type: string }
+          - { name: weight, label: Order (lower comes first), type: number }
+          - { name: body, label: Text, type: rich-text, options: { format: markdown } }
+      - name: threadwise-overview
+        label: Threadwise, overview
+        type: file
+        path: content/en/apps/threadwise/_index.md
+        format: yaml-frontmatter
+        fields:
+          - { name: title, label: Name, type: string }
+          - { name: summary, label: One-line description, type: text }
+          - { name: app_url, label: Link to the app, type: string }
+          - { name: app_lang, label: "The app speaks English and Icelandic (open it in the language being read)", type: boolean }
+          - { name: repo_url, label: Link to the source on GitHub, type: string }
+          - { name: tags, label: Tags, type: select, options: { multiple: true, values: [HAM radio, SOTA, POTA, 3D printing, Metalworking, Hike, Antennas, Satellites, LoRa, Maps] } }
+          - { name: weight, label: Order (lower comes first), type: number }
+          - { name: body, label: Text, type: rich-text, options: { format: markdown } }
+      - name: threadwise-instructions
+        label: Threadwise, instructions
+        type: file
+        path: content/en/apps/threadwise/instructions.md
+        format: yaml-frontmatter
+        fields:
+          - { name: title, label: Title, type: string }
+          - { name: weight, label: Order (lower comes first), type: number }
+          - { name: body, label: Text, type: rich-text, options: { format: markdown } }
+      - name: threadwise-history
+        label: Threadwise, how it came to be
+        type: file
+        path: content/en/apps/threadwise/history.md
         format: yaml-frontmatter
         fields:
           - { name: title, label: Title, type: string }

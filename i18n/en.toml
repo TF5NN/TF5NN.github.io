@@ -16,6 +16,9 @@ apps_heading = "Apps I have made"
 open_app = "Open the app ↗"
 source_github = "Source on GitHub ↗"
 overview = "Overview"
+# The tag filter at the top of the Apps page.
+filter_apps = "Show apps by tag"
+all_apps = "All"
 
 latest_posts = "Latest posts"
 browse_by_tag = "Browse by tag"
@@ -27,7 +30,8 @@ newer_posts = "← Newer posts"
 page_of = "Page {{ .Page }} of {{ .Total }}"
 more_posts = "More posts"
 
-tags_lede = "Every post carries one or more tags. Pick one to see only those posts."
+tags_lede = "Posts and apps carry tags. Pick one to see everything with that tag."
+no_posts_with_tag = "No posts with this tag yet."
 no_tags = "No tags yet."
 
 rss = "RSS feed"
@@ -62,6 +66,14 @@ other = "All {{ .Count }} posts"
 [posts_count]
 one = "{{ .Count }} post"
 other = "{{ .Count }} posts"
+
+[apps_count]
+one = "{{ .Count }} app"
+other = "{{ .Count }} apps"
+
+[apps_with_tag]
+one = "The app with this tag"
+other = "{{ .Count }} apps with this tag"
 
 [posts_with_tag]
 one = "{{ .Count }} post with this tag."

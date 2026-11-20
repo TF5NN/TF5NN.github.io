@@ -1,13 +1,32 @@
 {{ define "main" }}
+{{- /* One tag: the apps that carry it (if any), then the posts. */}}
+{{- $apps := where .Pages "Section" "apps" }}
+{{- $posts := where .Pages "Section" "posts" }}
 <header class="page-head">
   <p class="crumb"><a href="{{ .Parent.RelPermalink }}">{{ .Parent.LinkTitle }}</a></p>
   <h1>{{ partial "tag-name.html" . }}</h1>
-  <p class="lede">{{ T "posts_with_tag" (len .Pages) }}</p>
+  {{- with $posts }}
+  <p class="lede">{{ T "posts_with_tag" (len .) }}</p>
+  {{- else }}
+  <p class="lede">{{ T "no_posts_with_tag" }}</p>
+  {{- end }}
 </header>
+{{- with $apps }}
+<section class="apps-strip" aria-labelledby="tag-apps-heading">
+  <h2 id="tag-apps-heading" class="label">{{ T "apps_with_tag" (len .) }}</h2>
+  <div class="apps-grid">
+    {{- range .ByWeight }}
+    {{ partial "app-card.html" . }}
+    {{- end }}
+  </div>
+</section>
+{{- end }}
+{{- with $posts }}
 <section class="log">
-  {{- range (.Paginate .Pages).Pages }}
+  {{- range ($.Paginate .).Pages }}
   {{ partial "entry.html" (dict "page" . "h" "h2") }}
   {{- end }}
 </section>
-{{ partial "pager.html" . }}
+{{ partial "pager.html" $ }}
+{{- end }}
 {{ end }}

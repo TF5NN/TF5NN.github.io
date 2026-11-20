@@ -1,8 +1,18 @@
-{{- /* One app: name, one-line description, and the three ways in. */ -}}
+{{- /* One app: name, one-line description, its tags, and the three ways in.
+       data-tags lists the app's tags (lowercase, dashes for spaces) for the filter
+       on the Apps page. */ -}}
 {{- $src := partial "lang.html" . -}}
-<article class="app"{{ if ne $src site.Language.Lang }} lang="{{ $src }}"{{ end }}>
+{{- $keys := slice }}{{ range .GetTerms "tags" }}{{ $keys = $keys | append (urlize .Data.Term) }}{{ end -}}
+<article class="app"{{ if ne $src site.Language.Lang }} lang="{{ $src }}"{{ end }} data-tags="{{ delimit $keys " " }}">
   <h3 class="app-name"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
   {{- with .Params.summary }}<p class="app-summary">{{ . }}</p>{{ end }}
+  {{- with .GetTerms "tags" }}
+  <ul class="tags app-tags" lang="{{ site.Language.Lang }}">
+    {{- range . }}
+    <li><a class="tag" href="{{ .RelPermalink }}">{{ partial "tag-name.html" . }}</a></li>
+    {{- end }}
+  </ul>
+  {{- end }}
   <p class="app-links">
     {{- with partial "app-url.html" . }}<a class="button" href="{{ . }}" lang="{{ site.Language.Lang }}">{{ T "open_app" }}</a>{{ end }}
     {{- range .RegularPages.ByWeight }}

@@ -5,10 +5,16 @@
 </header>
 <ul class="tag-index">
   {{- range .Data.Terms.Alphabetical }}
+  {{- /* Count posts and apps separately: "3 posts · 1 app". */}}
+  {{- $posts := len (where .Pages "Section" "posts") }}
+  {{- $apps := len (where .Pages "Section" "apps") }}
+  {{- $parts := slice }}
+  {{- if $posts }}{{ $parts = $parts | append (T "posts_count" $posts) }}{{ end }}
+  {{- if $apps }}{{ $parts = $parts | append (T "apps_count" $apps) }}{{ end }}
   <li>
     <a href="{{ .Page.RelPermalink }}">
       <span class="tag-index-name">{{ partial "tag-name.html" .Page }}</span>
-      <span class="tag-index-count">{{ T "posts_count" .Count }}</span>
+      <span class="tag-index-count">{{ delimit $parts " · " }}</span>
     </a>
   </li>
   {{- else }}

@@ -78,6 +78,11 @@
 *::after {
   box-sizing: border-box;
 }
+/* Anything marked hidden stays hidden, even where a rule below gives it a display
+   (the app cards are flex boxes, and the tag filter on the Apps page hides them). */
+[hidden] {
+  display: none !important;
+}
 html {
   -webkit-text-size-adjust: 100%;
 }
@@ -458,11 +463,40 @@ main {
   color: var(--green);
 }
 .app-summary {
-  margin: 6px 0 16px;
+  margin: 6px 0 12px;
   font-size: 14px;
   color: var(--text);
   max-width: 48ch;
 }
+/* The tags on an app card, between the description and the links. */
+.app-tags {
+  margin-bottom: 16px;
+}
+.app-head .app-tags {
+  margin: 12px 0 0;
+}
+
+/* The tag filter at the top of the Apps page: the same pills, as buttons.
+   The pressed one is filled in. */
+.app-filter {
+  margin-bottom: 22px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--soft-line);
+}
+.app-filter .tag {
+  font-family: inherit;
+  cursor: pointer;
+}
+.app-filter .tag[aria-pressed='true'] {
+  background: var(--green);
+  border-color: var(--green);
+  color: var(--on-ink);
+}
+.app-filter .tag:focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: 2px;
+}
+
 .app-links {
   display: flex;
   flex-wrap: wrap;
@@ -1031,7 +1065,8 @@ main {
   .app::after {
     display: none;
   }
-  .app + .app {
+  /* A line above every app shown after another one, also while the filter hides some. */
+  .app:not([hidden]) ~ .app:not([hidden]) {
     border-top: 1px solid var(--soft-line);
     padding-top: 20px;
   }
