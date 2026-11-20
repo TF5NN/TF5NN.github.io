@@ -1,0 +1,11 @@
+{{- /*
+  The address of an app, for the "Open the app" buttons. An app that speaks both
+  languages has "app_lang: true" in its front matter; its address then gets
+  ?lang=en or ?lang=is, so the app opens in the language the visitor is reading
+  the site in.
+*/ -}}
+{{- $url := .Params.app_url -}}
+{{- if and $url .Params.app_lang -}}
+  {{- $url = printf "%s%slang=%s" $url (cond (strings.Contains $url "?") "&" "?") site.Language.Lang -}}
+{{- end -}}
+{{- return $url -}}

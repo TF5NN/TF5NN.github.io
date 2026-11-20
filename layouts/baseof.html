@@ -30,6 +30,9 @@
   <!-- Light or dark before the first paint: the visitor's remembered choice (shared with the apps on
        this site), otherwise the device's setting. The button at the end of the top bar switches it. -->
   <script>
+  // The language being read is remembered for the apps on this site (the ones that speak both
+  // languages read it), so any link to them, even one written in a post, opens them in it.
+  try { localStorage.setItem('tf5nn-lang', '{{ site.Language.Lang }}'); } catch (e) {}
   (function () {
     var KEY = 'tf5nn-theme';
     var device = window.matchMedia('(prefers-color-scheme: dark)');

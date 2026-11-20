@@ -4,7 +4,7 @@
   <h3 class="app-name"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
   {{- with .Params.summary }}<p class="app-summary">{{ . }}</p>{{ end }}
   <p class="app-links">
-    {{- with .Params.app_url }}<a class="button" href="{{ . }}" lang="{{ site.Language.Lang }}">{{ T "open_app" }}</a>{{ end }}
+    {{- with partial "app-url.html" . }}<a class="button" href="{{ . }}" lang="{{ site.Language.Lang }}">{{ T "open_app" }}</a>{{ end }}
     {{- range .RegularPages.ByWeight }}
     <a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
     {{- end }}

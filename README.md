@@ -162,6 +162,8 @@ The web editor offers a fixed list so the spelling stays the same. To add a tag 
 
 Copy one of the folders in `content/en/apps/`, rename it, and change the text and the two links at the top of its `_index.md`. It shows up on the front page and the Apps page by itself, in both languages.
 
+If the app itself speaks both languages (Sightline does), add `app_lang: true` under the links. Its "Open the app" button then adds `?lang=en` or `?lang=is` to the address, so the app opens in the language the visitor is reading the site in. The site also remembers the language being read, so even a link to the app written inside a post follows it.
+
 ## Publishing
 
 The site is live at `https://tf5nn.github.io/`. Every change to this repository publishes itself a minute or two later, through the **Build and publish** step under the **Actions** tab. If a change does not show up, look there first: a red mark means the build failed, and clicking it shows why.

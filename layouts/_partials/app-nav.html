@@ -9,7 +9,7 @@
       {{- with $app.Params.summary }}<p class="lede">{{ . }}</p>{{ end }}
     </div>
     <p class="app-head-actions">
-      {{- with $app.Params.app_url }}<a class="button" href="{{ . }}">{{ T "open_app" }}</a>{{ end }}
+      {{- with partial "app-url.html" $app }}<a class="button" href="{{ . }}">{{ T "open_app" }}</a>{{ end }}
       {{- with $app.Params.repo_url }}<a class="button button-quiet" href="{{ . }}">{{ T "source_github" }}</a>{{ end }}
     </p>
   </div>
