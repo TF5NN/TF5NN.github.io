@@ -27,6 +27,6 @@ Loftnetskapallinn er síðan lagður eftir raufinni í þakboganum og kemur út 
 
 ![Hvítur skutbíll með loftnetinu uppsettu á þakboganum, séð ofan frá](/media/2025-03-16-roof-bar-antenna-5.jpg)
 
-Allt komið saman og tilbúið fyrir sumarleika 2025.
+Allt komið saman og tilbúið fyrir Sumarleika ÍRA 2025.
 
 73, de TF5NN

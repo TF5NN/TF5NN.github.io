@@ -13,7 +13,7 @@ draft: false
 ---
 When it comes to putting an antenna on a car there are plenty of options, from drilling a hole in the roof, to clamping it to a wing or the bonnet, to using a magnetic base. I wanted to go a different way that would keep the risk of damaging the paint to a minimum, so I decided to use a roof bar I already had.
 
-The antenna mount I used is a Nagoya RB-46 and the antenna is a Diamond SG-7500, and the connector and cable came with it.
+The antenna mount I used is a Nagoya RB-46 and the antenna is a Diamond SG-7500, which came with the connector and cable.
 
 ![Aluminium plate held in a vise, covered in chips from drilling and tapping](/media/2025-03-16-roof-bar-antenna-1.jpg)
 
@@ -29,6 +29,6 @@ The antenna cable then runs along the slot in the roof bar and comes out at the 
 
 ![White estate car with the antenna fitted on the roof bar, seen from above](/media/2025-03-16-roof-bar-antenna-5.jpg)
 
-All put together and ready for the 2025 summer games.
+All put together and ready for ÍRA's Summer Games (Sumarleikar) 2025.
 
 73, de TF5NN
