@@ -20,10 +20,8 @@
   {{- with site.GetPage "/posts" }}{{ with .OutputFormats.Get "rss" }}
   <link rel="alternate" type="application/rss+xml" title="{{ site.Title }} posts" href="{{ .RelPermalink }}">
   {{- end }}{{ end }}
-  <!-- Same two typefaces as the apps. -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;450;500;550;600;650;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+  <!-- Same two typefaces as the apps, served from this site (static/fonts/), not Google Fonts. -->
+  <link rel="stylesheet" href="{{ "fonts/fonts.css" | relURL }}">
   {{- with resources.Get "css/site.css" | fingerprint }}
   <link rel="stylesheet" href="{{ .RelPermalink }}">
   {{- end }}
