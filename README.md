@@ -211,7 +211,7 @@ Nothing in this folder needs to change. The apps move to the new domain too, at 
 
 ## Changing the look
 
-Colours and fonts are at the top of `assets/css/site.css`. They are close to the values the apps use, so the site and the apps look like one place. The apps' style guide is `docs/STYLE.md` in the Northbound repository.
+Colours and fonts are at the top of `assets/css/site.css`. The font files themselves (DM Sans and IBM Plex Mono, SIL Open Font License) are in `static/fonts/` and are served by the site, so visitors' browsers never contact Google Fonts. They are close to the values the apps use, so the site and the apps look like one place. The apps' style guide is `docs/STYLE.md` in the Northbound repository.
 
 **Light and dark.** The site follows the visitor's device: dark if their phone or computer is set to dark. The small sun or moon button at the end of the top bar switches it, and that choice is remembered in their browser and shared with the apps, so switching in one place switches them all. Every colour at the top of `site.css` has a second, dark value in the block right under it; if you change a colour, change both. Photos are not altered.
 
