@@ -20,6 +20,10 @@ overview = "Overview"
 filter_apps = "Show apps by tag"
 all_apps = "All"
 
+# The Links page.
+filter_links = "Show links by tag"
+no_links = "No links yet."
+
 latest_posts = "Latest posts"
 browse_by_tag = "Browse by tag"
 no_posts = "No posts yet."
@@ -30,7 +34,7 @@ newer_posts = "← Newer posts"
 page_of = "Page {{ .Page }} of {{ .Total }}"
 more_posts = "More posts"
 
-tags_lede = "Posts and apps carry tags. Pick one to see everything with that tag."
+tags_lede = "Posts, apps and links carry tags. Pick one to see everything with that tag."
 no_posts_with_tag = "No posts with this tag yet."
 no_tags = "No tags yet."
 
@@ -74,6 +78,14 @@ other = "{{ .Count }} apps"
 [apps_with_tag]
 one = "The app with this tag"
 other = "{{ .Count }} apps with this tag"
+
+[links_count]
+one = "{{ .Count }} link"
+other = "{{ .Count }} links"
+
+[links_with_tag]
+one = "The link with this tag"
+other = "{{ .Count }} links with this tag"
 
 [posts_with_tag]
 one = "{{ .Count }} post with this tag."

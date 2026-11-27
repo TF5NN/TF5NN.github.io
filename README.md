@@ -12,6 +12,7 @@ It is built with [Hugo](https://gohugo.io/), a program that turns the text files
 | `content/is/` | Everything written in Icelandic. |
 | `content/en/posts/`, `content/is/posts/` | Your posts. One text file per post. |
 | `content/en/apps/` | The pages about each app: overview, instructions, how it came to be. |
+| `content/en/links/` | Your saved links. One small text file per link. |
 | `content/en/about.md`, `content/is/about.md` | The About page in each language. |
 | `content/en/_index.md`, `content/is/_index.md` | The headline and introduction on the front page. |
 | `static/media/` | Your photos, shared by both languages. |
@@ -157,7 +158,7 @@ tag_metalworking = "Málmsmíði"
 
 The part after `tag_` is the tag in lowercase with dashes for spaces. A tag without such a line is shown as written, which suits names like SOTA and POTA.
 
-The web editor offers a fixed list so the spelling stays the same. To add a tag to that list, open `.pages.yml`, find `values:` under `tags` (it appears twice, once per language), and add a line in both. The app pages have the same list on one line each, `values: [HAM radio, SOTA, ...]`; add the new tag there too.
+The web editor offers a fixed list so the spelling stays the same. To add a tag to that list, open `.pages.yml`, find `values:` under `tags` (it appears three times: English posts, Icelandic posts and Links), and add a line in each. The app pages have the same list on one line each, `values: [HAM radio, SOTA, ...]`; add the new tag there too.
 
 ### Tags on apps
 
@@ -167,9 +168,35 @@ Apps carry tags the same way posts do, in a `tags:` line at the top of the app's
 tags: ["HAM radio", "Antennas"]
 ```
 
-They share the posts' tags, so a tag page such as "HAM radio" shows the apps with that tag above the posts, and the Tags page counts both ("2 posts · 3 apps"). The Apps page gets a row of tag buttons at the top; pressing one shows only the apps with that tag, and the address (for example `/apps/?tag=ham-radio`) can be shared. The row only appears once the apps use two or more different tags.
+They share the posts' tags, so a tag page such as "HAM radio" shows the apps with that tag above the posts, and the Tags page counts them all ("2 posts · 3 apps · 2 links"). The Apps page gets a row of tag buttons at the top; pressing one shows only the apps with that tag, and the address (for example `/apps/?tag=ham-radio`) can be shared. The row only appears once the apps use two or more different tags.
 
 If an app also has an Icelandic `_index.md` under `content/is/apps/`, give it the same `tags:` line.
+
+## Links
+
+The **Links** page is a list of useful sites, each with a short note and tags. Clicking a link goes straight to that site; links never get a page of their own here. The list is newest first, and a row of tag buttons at the top narrows it down, the same way as on the Apps page (for example `/links/?tag=cw`). Links also show at the bottom of each tag page, under the posts.
+
+Each link is one small file in `content/en/links/`:
+
+```
+---
+title: LCWO, Learn CW Online
+link: https://lcwo.net/
+date: 2026-11-27
+tags: ["CW", "HAM radio"]
+summary: Free Morse code course in the browser, using the Koch method.
+---
+```
+
+| Line | Meaning | Needed? |
+|---|---|---|
+| `title` | The name shown on the site. | Yes |
+| `link` | The full web address, starting with `https://`. (It is called `link` and not `url` because Hugo keeps `url` for itself.) | Yes |
+| `date` | The day you added it. Newest come first. | Yes |
+| `tags` | One or more tags, the same ones as the posts use. | No |
+| `summary` | A sentence or two on what it is and why it is useful. | No |
+
+The easiest way to add one is the **Links** list in the web editor, which gives you a form. On GitHub, add a file to `content/en/links/` named like `2026-11-27-lcwo.md`. Links live only in the English folder and show on both language sides; the note can be in either language.
 
 ## Adding another app
 

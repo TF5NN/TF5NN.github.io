@@ -1,0 +1,70 @@
+{{- /*
+  A row of tag buttons that shows only the items with the pressed tag.
+  Used on the Apps page and the Links page. Give it:
+    pages  the pages being filtered
+    label  what the row is for, read out by screen readers
+  Each item it filters needs data-tags="tag-one tag-two" and has to sit
+  inside an element with data-filter-items.
+
+  The row only appears once the pages use two or more different tags, and
+  stays hidden for visitors without scripts (they still have the tags on
+  each item, which lead to the tag pages). The choice is kept in the address,
+  for example /links/?tag=cw, so a filtered list can be shared.
+*/ -}}
+{{- $pages := .pages }}
+{{- /* The tags the pages use, most used first, each with how many pages carry it. */}}
+{{- $seen := dict }}
+{{- $list := slice }}
+{{- range $pages }}{{ range .GetTerms "tags" }}
+  {{- $key := urlize .Data.Term }}
+  {{- if not (index $seen $key) }}
+    {{- $seen = merge $seen (dict $key true) }}
+    {{- $n := 0 }}{{ range $pages }}{{ range .GetTerms "tags" }}{{ if eq (urlize .Data.Term) $key }}{{ $n = add $n 1 }}{{ end }}{{ end }}{{ end }}
+    {{- $list = $list | append (dict "key" $key "name" (partial "tag-name.html" .) "count" $n) }}
+  {{- end }}
+{{- end }}{{ end }}
+{{- $list = sort (sort $list "name") "count" "desc" }}
+{{- if ge (len $list) 2 }}
+<div class="app-filter tags" role="group" aria-label="{{ .label }}" hidden>
+  <button type="button" class="tag" data-tag="" aria-pressed="true">{{ T "all_apps" }} <span>{{ len $pages }}</span></button>
+  {{- range $list }}
+  <button type="button" class="tag" data-tag="{{ .key }}" aria-pressed="false">{{ .name }} <span>{{ .count }}</span></button>
+  {{- end }}
+</div>
+<script>
+  (function () {
+    var bar = document.currentScript.previousElementSibling;
+    var buttons = bar.querySelectorAll('button');
+    var items = document.querySelectorAll('[data-filter-items] [data-tags]');
+
+    function show(tag) {
+      // A tag in the address that nothing here uses shows everything.
+      if (!bar.querySelector('button[data-tag="' + tag + '"]')) tag = '';
+      buttons.forEach(function (b) {
+        b.setAttribute('aria-pressed', b.dataset.tag === tag ? 'true' : 'false');
+      });
+      items.forEach(function (item) {
+        item.hidden = tag !== '' && item.dataset.tags.split(' ').indexOf(tag) < 0;
+      });
+    }
+
+    bar.addEventListener('click', function (event) {
+      var button = event.target.closest('button');
+      if (!button) return;
+      var tag = button.dataset.tag;
+      show(tag);
+      var url = new URL(location.href);
+      if (tag) url.searchParams.set('tag', tag); else url.searchParams.delete('tag');
+      history.replaceState(history.state, '', url);
+    });
+
+    // The items come after the row in the page, so wait until they are there.
+    function start() {
+      items = document.querySelectorAll('[data-filter-items] [data-tags]');
+      show(new URLSearchParams(location.search).get('tag') || '');
+      bar.hidden = false;
+    }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start); else start();
+  })();
+</script>
+{{- end }}

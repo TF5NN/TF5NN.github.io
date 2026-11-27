@@ -7,73 +7,15 @@
 </header>
 {{- with .Content }}<div class="prose">{{ . }}</div>{{ end }}
 
-{{- /* The tags the apps use, most used first, each with how many apps carry it. */}}
 {{- $apps := .Sections.ByWeight }}
-{{- $seen := dict }}
-{{- $list := slice }}
-{{- range $apps }}{{ range .GetTerms "tags" }}
-  {{- $key := urlize .Data.Term }}
-  {{- if not (index $seen $key) }}
-    {{- $seen = merge $seen (dict $key true) }}
-    {{- $n := 0 }}{{ range $apps }}{{ range .GetTerms "tags" }}{{ if eq (urlize .Data.Term) $key }}{{ $n = add $n 1 }}{{ end }}{{ end }}{{ end }}
-    {{- $list = $list | append (dict "key" $key "name" (partial "tag-name.html" .) "count" $n) }}
-  {{- end }}
-{{- end }}{{ end }}
-{{- $list = sort (sort $list "name") "count" "desc" }}
-
 <section class="apps-strip">
-  {{- /* The filter. It stays hidden for visitors without scripts; they still have
-         the tags on each app, which lead to the tag pages. */}}
-  {{- if ge (len $list) 2 }}
-  <div class="app-filter tags" role="group" aria-label="{{ T "filter_apps" }}" hidden>
-    <button type="button" class="tag" data-tag="" aria-pressed="true">{{ T "all_apps" }} <span>{{ len $apps }}</span></button>
-    {{- range $list }}
-    <button type="button" class="tag" data-tag="{{ .key }}" aria-pressed="false">{{ .name }} <span>{{ .count }}</span></button>
-    {{- end }}
-  </div>
-  {{- end }}
-  <div class="apps-grid">
+  {{ partial "tag-filter.html" (dict "pages" $apps "label" (T "filter_apps")) }}
+  <div class="apps-grid" data-filter-items>
     {{- range $apps }}
     {{ partial "app-card.html" . }}
     {{- end }}
   </div>
 </section>
-{{- if ge (len $list) 2 }}
-<script>
-  // The tag filter on the Apps page. Pressing a tag hides the apps that do not
-  // carry it; "All" shows them all again. The choice is kept in the address
-  // (for example /apps/?tag=ham-radio), so a filtered list can be shared.
-  (function () {
-    var bar = document.querySelector('.app-filter');
-    var buttons = bar.querySelectorAll('button');
-    var apps = document.querySelectorAll('.apps-grid .app');
-
-    function show(tag) {
-      // A tag in the address that no app uses shows everything.
-      if (!bar.querySelector('button[data-tag="' + tag + '"]')) tag = '';
-      buttons.forEach(function (b) {
-        b.setAttribute('aria-pressed', b.dataset.tag === tag ? 'true' : 'false');
-      });
-      apps.forEach(function (app) {
-        app.hidden = tag !== '' && app.dataset.tags.split(' ').indexOf(tag) < 0;
-      });
-    }
-
-    bar.addEventListener('click', function (event) {
-      var button = event.target.closest('button');
-      if (!button) return;
-      var tag = button.dataset.tag;
-      show(tag);
-      var url = new URL(location.href);
-      if (tag) url.searchParams.set('tag', tag); else url.searchParams.delete('tag');
-      history.replaceState(history.state, '', url);
-    });
-
-    show(new URLSearchParams(location.search).get('tag') || '');
-    bar.hidden = false;
-  })();
-</script>
-{{- end }}
 {{- else }}
 <article class="page">
   {{ partial "app-nav.html" (dict "app" . "current" .) }}
