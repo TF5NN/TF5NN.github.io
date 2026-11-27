@@ -64,6 +64,8 @@ content:
             - Satellites
             - LoRa
             - Maps
+            - CW
+            - Games
       - name: cover
         label: Main photo
         description: Shown at the top of the post and as the small picture in lists. Optional.
@@ -156,6 +158,8 @@ content:
             - Satellites
             - LoRa
             - Maps
+            - CW
+            - Games
       - name: cover
         label: Aðalmynd
         description: Sést efst í færslunni og sem smámynd í listum. Má sleppa.
@@ -197,6 +201,67 @@ content:
         options:
           format: markdown
 
+  # ---- Links ----
+  # Useful links. Each one is a small file in content/en/links. They show on
+  # the Links page and on the tag pages, in both languages, but never get a
+  # page of their own: clicking one goes straight to the site.
+  - name: links
+    label: Links
+    type: collection
+    path: content/en/links
+    format: yaml-frontmatter
+    exclude: ["_index.md"]
+    filename:
+      template: "{year}-{month}-{day}-{primary}.md"
+      field: create
+    view:
+      fields: [title, link, date]
+      primary: title
+      sort: [date, title]
+      default:
+        sort: date
+        order: desc
+    fields:
+      - name: title
+        label: Name
+        description: What the link is called on the site.
+        type: string
+        required: true
+      - name: link
+        label: Address
+        description: The full web address, starting with https://
+        type: string
+        required: true
+      - name: date
+        label: Added
+        description: The day you add it. Newest links come first.
+        type: date
+        options:
+          format: yyyy-MM-dd
+      - name: tags
+        label: Tags
+        type: select
+        options:
+          multiple: true
+          # The same list as on the posts. Keep the spelling the same everywhere.
+          values:
+            - HAM radio
+            - SOTA
+            - POTA
+            - 3D printing
+            - Metalworking
+            - Hike
+            - Antennas
+            - Satellites
+            - LoRa
+            - Maps
+            - CW
+            - Games
+      - name: summary
+        label: Note
+        description: One or two sentences on what it is and why it is useful. Optional.
+        type: text
+
   # ---- App pages (English) ----
   - name: apps
     label: App pages
@@ -212,7 +277,7 @@ content:
           - { name: summary, label: One-line description, type: text }
           - { name: app_url, label: Link to the app, type: string }
           - { name: repo_url, label: Link to the source on GitHub, type: string }
-          - { name: tags, label: Tags, type: select, options: { multiple: true, values: [HAM radio, SOTA, POTA, 3D printing, Metalworking, Hike, Antennas, Satellites, LoRa, Maps] } }
+          - { name: tags, label: Tags, type: select, options: { multiple: true, values: [HAM radio, SOTA, POTA, 3D printing, Metalworking, Hike, Antennas, Satellites, LoRa, Maps, CW, Games] } }
           - { name: weight, label: Order (lower comes first), type: number }
           - { name: body, label: Text, type: rich-text, options: { format: markdown } }
       - name: efhw-instructions
@@ -243,7 +308,7 @@ content:
           - { name: summary, label: One-line description, type: text }
           - { name: app_url, label: Link to the app, type: string }
           - { name: repo_url, label: Link to the source on GitHub, type: string }
-          - { name: tags, label: Tags, type: select, options: { multiple: true, values: [HAM radio, SOTA, POTA, 3D printing, Metalworking, Hike, Antennas, Satellites, LoRa, Maps] } }
+          - { name: tags, label: Tags, type: select, options: { multiple: true, values: [HAM radio, SOTA, POTA, 3D printing, Metalworking, Hike, Antennas, Satellites, LoRa, Maps, CW, Games] } }
           - { name: weight, label: Order (lower comes first), type: number }
           - { name: body, label: Text, type: rich-text, options: { format: markdown } }
       - name: northbound-instructions
@@ -275,7 +340,7 @@ content:
           - { name: app_url, label: Link to the app, type: string }
           - { name: app_lang, label: "The app speaks English and Icelandic (open it in the language being read)", type: boolean }
           - { name: repo_url, label: Link to the source on GitHub, type: string }
-          - { name: tags, label: Tags, type: select, options: { multiple: true, values: [HAM radio, SOTA, POTA, 3D printing, Metalworking, Hike, Antennas, Satellites, LoRa, Maps] } }
+          - { name: tags, label: Tags, type: select, options: { multiple: true, values: [HAM radio, SOTA, POTA, 3D printing, Metalworking, Hike, Antennas, Satellites, LoRa, Maps, CW, Games] } }
           - { name: weight, label: Order (lower comes first), type: number }
           - { name: body, label: Text, type: rich-text, options: { format: markdown } }
       - name: sightline-instructions
@@ -307,7 +372,7 @@ content:
           - { name: app_url, label: Link to the app, type: string }
           - { name: app_lang, label: "The app speaks English and Icelandic (open it in the language being read)", type: boolean }
           - { name: repo_url, label: Link to the source on GitHub, type: string }
-          - { name: tags, label: Tags, type: select, options: { multiple: true, values: [HAM radio, SOTA, POTA, 3D printing, Metalworking, Hike, Antennas, Satellites, LoRa, Maps] } }
+          - { name: tags, label: Tags, type: select, options: { multiple: true, values: [HAM radio, SOTA, POTA, 3D printing, Metalworking, Hike, Antennas, Satellites, LoRa, Maps, CW, Games] } }
           - { name: weight, label: Order (lower comes first), type: number }
           - { name: body, label: Text, type: rich-text, options: { format: markdown } }
       - name: threadwise-instructions

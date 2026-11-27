@@ -1,0 +1,21 @@
+{{ define "main" }}
+{{- /* The Links page: every saved link, newest first, with a tag filter on top. */}}
+{{- $links := .RegularPages.ByDate.Reverse }}
+<header class="page-head">
+  <h1>{{ .Title }}</h1>
+  {{- with .Params.summary }}<p class="lede">{{ . }}</p>{{ end }}
+</header>
+{{- with .Content }}<div class="prose">{{ . }}</div>{{ end }}
+{{- with $links }}
+<section class="links">
+  {{ partial "tag-filter.html" (dict "pages" . "label" (T "filter_links")) }}
+  <div class="link-list" data-filter-items>
+    {{- range . }}
+    {{ partial "link-item.html" (dict "page" . "h" "h2") }}
+    {{- end }}
+  </div>
+</section>
+{{- else }}
+<p class="empty">{{ T "no_links" }}</p>
+{{- end }}
+{{ end }}

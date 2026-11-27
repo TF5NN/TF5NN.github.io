@@ -1,0 +1,23 @@
+{{- /* One saved link: its name (which goes straight to the site), the web
+       address, the note, and its tags. Give it: page, and h (the heading tag).
+       data-tags is for the tag filter on the Links page. */ -}}
+{{- $p := .page -}}
+{{- $h := .h | default "h2" -}}
+{{- $src := partial "lang.html" $p -}}
+{{- $url := $p.Params.link -}}
+{{- $host := "" }}{{ with $url }}{{ $host = (urls.Parse .).Host | strings.TrimPrefix "www." }}{{ end -}}
+{{- $keys := slice }}{{ range $p.GetTerms "tags" }}{{ $keys = $keys | append (urlize .Data.Term) }}{{ end -}}
+<article class="link" data-tags="{{ delimit $keys " " }}">
+  <div class="link-main"{{ if ne $src site.Language.Lang }} lang="{{ $src }}"{{ end }}>
+    {{ printf "<%s class=\"link-title\">" $h | safeHTML }}<a href="{{ $url }}" rel="noopener">{{ $p.Title }}<span aria-hidden="true"> ↗</span></a>{{ printf "</%s>" $h | safeHTML }}
+    {{- with $host }}<p class="link-host">{{ . }}</p>{{ end }}
+    {{- with $p.Params.summary }}<p class="link-summary">{{ . }}</p>{{ end }}
+  </div>
+  {{- with $p.GetTerms "tags" }}
+  <ul class="tags">
+    {{- range . }}
+    <li><a class="tag" href="{{ .RelPermalink }}">{{ partial "tag-name.html" . }}</a></li>
+    {{- end }}
+  </ul>
+  {{- end }}
+</article>

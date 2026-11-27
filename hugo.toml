@@ -49,6 +49,11 @@ capitalizeListTitles = false
     pageRef = "/apps"
     weight = 20
   [[languages.en.menus.main]]
+    identifier = "links"
+    name = "Links"
+    pageRef = "/links"
+    weight = 25
+  [[languages.en.menus.main]]
     identifier = "timeline"
     name = "Timeline"
     pageRef = "/timeline"
@@ -81,6 +86,11 @@ capitalizeListTitles = false
     name = "Forrit"
     pageRef = "/apps"
     weight = 20
+  [[languages.is.menus.main]]
+    identifier = "links"
+    name = "Tenglar"
+    pageRef = "/links"
+    weight = 25
   [[languages.is.menus.main]]
     identifier = "timeline"
     name = "Tímalína"

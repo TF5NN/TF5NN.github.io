@@ -1,13 +1,14 @@
 {{ define "main" }}
-{{- /* One tag: the apps that carry it (if any), then the posts. */}}
+{{- /* One tag: the apps that carry it (if any), then the posts, then the links. */}}
 {{- $apps := where .Pages "Section" "apps" }}
+{{- $links := where .Pages "Section" "links" }}
 {{- $posts := where .Pages "Section" "posts" }}
 <header class="page-head">
   <p class="crumb"><a href="{{ .Parent.RelPermalink }}">{{ .Parent.LinkTitle }}</a></p>
   <h1>{{ partial "tag-name.html" . }}</h1>
-  {{- with $posts }}
-  <p class="lede">{{ T "posts_with_tag" (len .) }}</p>
-  {{- else }}
+  {{- if $posts }}
+  <p class="lede">{{ T "posts_with_tag" (len $posts) }}</p>
+  {{- else if not (or $apps $links) }}
   <p class="lede">{{ T "no_posts_with_tag" }}</p>
   {{- end }}
 </header>
@@ -28,5 +29,15 @@
   {{- end }}
 </section>
 {{ partial "pager.html" $ }}
+{{- end }}
+{{- with $links }}
+<section class="links tag-links" aria-labelledby="tag-links-heading">
+  <h2 id="tag-links-heading" class="label">{{ T "links_with_tag" (len .) }}</h2>
+  <div class="link-list">
+    {{- range .ByDate.Reverse }}
+    {{ partial "link-item.html" (dict "page" . "h" "h3") }}
+    {{- end }}
+  </div>
+</section>
 {{- end }}
 {{ end }}

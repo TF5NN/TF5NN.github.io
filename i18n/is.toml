@@ -20,6 +20,10 @@ overview = "Yfirlit"
 filter_apps = "Sýna forrit eftir efnisorði"
 all_apps = "Öll"
 
+# Tenglasíðan.
+filter_links = "Sýna tengla eftir efnisorði"
+no_links = "Engir tenglar ennþá."
+
 latest_posts = "Nýjustu færslur"
 browse_by_tag = "Skoða eftir efnisorði"
 no_posts = "Engar færslur ennþá."
@@ -30,7 +34,7 @@ newer_posts = "← Nýrri færslur"
 page_of = "Síða {{ .Page }} af {{ .Total }}"
 more_posts = "Fleiri færslur"
 
-tags_lede = "Færslur og forrit hafa efnisorð. Veldu eitt til að sjá allt sem hefur það."
+tags_lede = "Færslur, forrit og tenglar hafa efnisorð. Veldu eitt til að sjá allt sem hefur það."
 no_posts_with_tag = "Engar færslur með þetta efnisorð ennþá."
 no_tags = "Engin efnisorð ennþá."
 
@@ -64,6 +68,7 @@ tag_hike = "Gönguferðir"
 tag_antennas = "Loftnet"
 tag_satellites = "Gervitungl"
 tag_maps = "Kort"
+tag_games = "Leikir"
 
 [written_years_later]
 one = "Skrifað {{ .Count }} ári síðar"
@@ -84,6 +89,14 @@ other = "{{ .Count }} forrit"
 [apps_with_tag]
 one = "Forritið með þetta efnisorð"
 other = "{{ .Count }} forrit með þetta efnisorð"
+
+[links_count]
+one = "{{ .Count }} tengill"
+other = "{{ .Count }} tenglar"
+
+[links_with_tag]
+one = "Tengillinn með þetta efnisorð"
+other = "{{ .Count }} tenglar með þetta efnisorð"
 
 [posts_with_tag]
 one = "{{ .Count }} færsla með þetta efnisorð."
