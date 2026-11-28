@@ -1,6 +1,10 @@
 ---
 title: Threadwise
 summary: Gengjuverkfæri fyrir verkstæðið. Finndu út hvaða gengja þetta er, fáðu málin til að smíða hana og mældu hana yfir þrjá víra.
+# Stutt lýsing fyrir forsíðuna. Ein eða tvær stuttar setningar.
+tagline: Greindu óþekkta gengju, fáðu málin til að smíða hana og mældu hana yfir þrjá víra.
+# Dagurinn sem forritið fór á síðuna. Forsíðan sýnir fjögur nýjustu forritin.
+date: 2026-11-20
 app_url: https://tf5nn.github.io/threadwise/
 app_lang: true
 repo_url: https://github.com/TF5NN/threadwise

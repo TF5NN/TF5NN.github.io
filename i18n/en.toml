@@ -19,6 +19,11 @@ overview = "Overview"
 # The tag filter at the top of the Apps page.
 filter_apps = "Show apps by tag"
 all_apps = "All"
+# The apps on the front page.
+open_short = "Open ↗"
+open_named = "Open {{ . }}"
+new_app = "New"
+more_about_apps = "More about the apps →"
 
 # The Links page.
 filter_links = "Show links by tag"
@@ -90,3 +95,7 @@ other = "{{ .Count }} links with this tag"
 [posts_with_tag]
 one = "{{ .Count }} post with this tag."
 other = "{{ .Count }} posts with this tag."
+
+[see_all_apps]
+one = "See the app →"
+other = "See all {{ .Count }} apps →"

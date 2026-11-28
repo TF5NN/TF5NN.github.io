@@ -1,6 +1,10 @@
 ---
 title: Feedpoint
 summary: See how the feedpoint impedance of end-fed and dipole wire antennas changes with wire length and feedpoint position, across the HF bands from 160 m to 6 m.
+# A short description for the front page. One or two short sentences.
+tagline: Wire antenna impedance across HF, 160 m to 6 m. End-fed and dipole.
+# The day the app went on the site. The front page shows the four newest apps.
+date: 2026-11-13
 app_url: https://tf5nn.github.io/HF-Antenna-Impedance-Visualizer/
 repo_url: https://github.com/TF5NN/HF-Antenna-Impedance-Visualizer
 # Tags work the same as on posts. Write them in English in both languages.

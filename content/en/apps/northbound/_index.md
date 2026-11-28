@@ -1,6 +1,10 @@
 ---
 title: Northbound
 summary: A satellite pass planner for FM handheld radios. Enter your location and see which amateur satellites you can work, when, and with which radio settings.
+# A short description for the front page. One or two short sentences.
+tagline: Satellite pass planner for FM handhelds. When, and with which settings.
+# The day the app went on the site. The front page shows the four newest apps.
+date: 2026-11-13
 app_url: https://tf5nn.github.io/sat-track/
 repo_url: https://github.com/TF5NN/sat-track
 # Tags work the same as on posts. Write them in English in both languages.

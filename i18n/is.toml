@@ -19,6 +19,11 @@ overview = "Yfirlit"
 # Síunin efst á Forrit-síðunni.
 filter_apps = "Sýna forrit eftir efnisorði"
 all_apps = "Öll"
+# Forritin á forsíðunni.
+open_short = "Opna ↗"
+open_named = "Opna {{ . }}"
+new_app = "Nýtt"
+more_about_apps = "Meira um forritin →"
 
 # Tenglasíðan.
 filter_links = "Sýna tengla eftir efnisorði"
@@ -100,4 +105,8 @@ other = "{{ .Count }} tenglar með þetta efnisorð"
 
 [posts_with_tag]
 one = "{{ .Count }} færsla með þetta efnisorð."
-other = "{{ .Count }} færslur með þetta efnisorð."
+other = "{{ .Count }} forrit með þetta efnisorð"
+
+[see_all_apps]
+one = "Sjá forritið →"
+other = "Sjá öll forritin ({{ .Count }}) →"

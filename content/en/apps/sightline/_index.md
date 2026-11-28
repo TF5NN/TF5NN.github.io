@@ -1,6 +1,10 @@
 ---
 title: Sightline
 summary: Terrain profiles for radio links. Place two points on the map and see whether the ground is in the way, and whether a radio link between them would probably work.
+# A short description for the front page. One or two short sentences.
+tagline: Terrain profiles. Place two points and see if a radio link between them will work.
+# The day the app went on the site. The front page shows the four newest apps.
+date: 2026-11-16
 app_url: https://tf5nn.github.io/sightline/
 # The app speaks English and Icelandic: the button opens it in the language being read here.
 app_lang: true

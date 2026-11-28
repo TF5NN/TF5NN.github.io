@@ -1,0 +1,13 @@
+{{- /* One app as a small tile on the front page: name, the short tagline and an Open button.
+       Called with (dict "page" <the app> "new" true/false). The full card, with tags,
+       instructions and history, is on the Apps page (app-card.html). */ -}}
+{{- $p := .page -}}
+{{- $src := partial "lang.html" $p -}}
+<article class="app-tile"{{ if ne $src site.Language.Lang }} lang="{{ $src }}"{{ end }}>
+  <h3 class="app-tile-name"><a href="{{ $p.RelPermalink }}">{{ $p.Title }}</a>
+    {{- if .new }} <span class="new-badge" lang="{{ site.Language.Lang }}">{{ T "new_app" }}</span>{{ end }}</h3>
+  {{- with $p.Params.tagline | default $p.Params.summary }}<p class="app-tile-text">{{ . }}</p>{{ end }}
+  {{- with partial "app-url.html" $p }}
+  <p><a class="button button-small" href="{{ . }}" lang="{{ site.Language.Lang }}" aria-label="{{ T "open_named" $p.Title }}">{{ T "open_short" }}</a></p>
+  {{- end }}
+</article>

@@ -4,12 +4,22 @@
   {{- with .Content }}<div class="intro-text">{{ . }}</div>{{ end }}
 </section>
 
-{{- with site.GetPage "/apps" }}{{ with .Sections.ByWeight }}
+{{- /* The four newest apps (by their "date"), newest first. The link on the right goes to
+       the Apps page: "See all N apps" once there are more than four. */}}
+{{- with site.GetPage "/apps" }}{{ with .Sections.ByDate.Reverse }}
+{{- $show := 4 }}
+{{- $total := len . }}
 <section class="apps-strip" aria-labelledby="apps-heading">
-  <h2 id="apps-heading" class="label">{{ T "apps_heading" }}</h2>
-  <div class="apps-grid">
-    {{- range . }}
-    {{ partial "app-card.html" . }}
+  <div class="apps-head">
+    <h2 id="apps-heading" class="label">{{ T "apps_heading" }}</h2>
+    <a class="apps-all" href="{{ (site.GetPage "/apps").RelPermalink }}">
+      {{- if gt $total $show }}{{ T "see_all_apps" $total }}{{ else }}{{ T "more_about_apps" }}{{ end }}</a>
+  </div>
+  <div class="app-tiles">
+    {{- range $i, $app := first $show . }}
+    {{- /* The newest app gets a NEW badge for its first 30 days on the site. */}}
+    {{- $new := and (eq $i 0) (not $app.Date.IsZero) ($app.Date.After (now.AddDate 0 0 -30)) }}
+    {{ partial "app-tile.html" (dict "page" $app "new" $new) }}
     {{- end }}
   </div>
 </section>

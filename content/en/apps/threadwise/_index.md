@@ -1,6 +1,10 @@
 ---
 title: Threadwise
 summary: Screw thread tools for the workshop. Find out what an unknown thread is, get the figures to make it, and measure it over three wires.
+# A short description for the front page. One or two short sentences.
+tagline: Identify an unknown thread, get the figures to cut it, and measure it over three wires.
+# The day the app went on the site. The front page shows the four newest apps.
+date: 2026-11-20
 app_url: https://tf5nn.github.io/threadwise/
 # The app speaks English and Icelandic: the button opens it in the language being read here.
 app_lang: true
