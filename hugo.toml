@@ -76,6 +76,11 @@ capitalizeListTitles = false
   [languages.is.params]
     tagline = "Verkefni og minnispunktar"
     description = "Verkefni, smíðar og minnispunktar frá TF5NN: amatörradíó, þrívíddarprentun, málmsmíði og fjallgöngur."
+    # The small banner on English pages, shown to visitors who are probably in Iceland
+    # but whose browser is in English. It offers the same page in Icelandic.
+    suggest_text = "Þessi síða er líka til á íslensku."
+    suggest_go = "Lesa á íslensku →"
+    suggest_close = "Loka"
   [[languages.is.menus.main]]
     identifier = "posts"
     name = "Færslur"

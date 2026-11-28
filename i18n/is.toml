@@ -105,7 +105,7 @@ other = "{{ .Count }} tenglar með þetta efnisorð"
 
 [posts_with_tag]
 one = "{{ .Count }} færsla með þetta efnisorð."
-other = "{{ .Count }} forrit með þetta efnisorð"
+other = "{{ .Count }} færslur með þetta efnisorð."
 
 [see_all_apps]
 one = "Sjá forritið →"

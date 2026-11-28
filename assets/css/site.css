@@ -289,6 +289,44 @@ main {
   color: var(--on-ink);
 }
 
+/* "This site is also in Icelandic": the banner above the top bar on English pages.
+   Hidden unless the script in baseof.html puts the suggest-is class on <html>. */
+.lang-suggest {
+  display: none;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 14px;
+  position: relative;
+  padding: 9px calc(var(--gutter) + 28px) 9px var(--gutter);
+  background: var(--soft);
+  border-bottom: 1px solid var(--soft-line);
+  color: var(--ink);
+  font-size: 14px;
+}
+.suggest-is .lang-suggest {
+  display: flex;
+}
+.lang-suggest p {
+  margin: 0;
+}
+.lang-suggest-close {
+  position: absolute;
+  top: 50%;
+  right: calc(var(--gutter) - 8px);
+  transform: translateY(-50%);
+  padding: 4px 8px;
+  border: 0;
+  background: none;
+  color: var(--muted);
+  font: inherit;
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+}
+.lang-suggest-close:hover {
+  color: var(--ink);
+}
+
 /* ─── Shared small pieces ─────────────────────── */
 .label {
   font-size: 11px;
