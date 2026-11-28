@@ -28,6 +28,6 @@ The antenna design is by VK3IL: [Multiband end-fed 80–10 m antenna](https://vk
 
 ![The antenna up in the garden](/media/2025-05-unun-efhw-6.jpg)
 
-As it turned out, the antenna never worked on 10 m and wasn't good below 20 m.
+As it turned out, the antenna never worked on 10 m and wasn't good below 20 m. I never figured out why. Compressing and spreading the windings changed things, but never made it good. I suspect stray inductance or capacitance.
 
 73, de TF5NN
