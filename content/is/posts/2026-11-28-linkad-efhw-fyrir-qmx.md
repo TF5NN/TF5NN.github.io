@@ -8,7 +8,7 @@ tags:
   - SOTA
 cover: /media/2026-01-qmx-efhw-6.jpg
 cover_alt: Loftnetið upprúllað á vindu með 49:1 UnUn og BNC-tengi í miðjunni
-draft: true
+draft: false
 ---
 Fékk smá tíma til þess að klára loftnetið fyrir QMX. Þetta er linkað EFHW sem ég get sett upp á þrjá vegu:
 
