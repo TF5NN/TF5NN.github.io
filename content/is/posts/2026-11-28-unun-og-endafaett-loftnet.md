@@ -26,4 +26,6 @@ Loftnetshönnunin er frá VK3IL: [Multiband end-fed 80–10 m antenna](https://v
 
 ![Loftnetið komið upp í garðinum](/media/2025-05-unun-efhw-6.jpg)
 
+Loftnetið virkaði reyndar aldrei á 10 m og var ekki gott fyrir neðan 20 m.
+
 73, de TF5NN
