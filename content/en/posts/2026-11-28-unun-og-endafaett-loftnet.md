@@ -22,7 +22,7 @@ The antenna design is by VK3IL: [Multiband end-fed 80–10 m antenna](https://vk
 
 ![Coil of green antenna wire wound on a blue plastic tube](/media/2025-05-unun-efhw-3.jpg)
 
-![The coil inside a grey cover on the antenna wire](/media/2025-05-unun-efhw-4.jpg)
+![The coil sealed in grey adhesive-lined heat-shrink tubing](/media/2025-05-unun-efhw-4.jpg)
 
 ![The UnUn assembled in the box with the core, capacitor and connectors](/media/2025-05-unun-efhw-5.jpg)
 

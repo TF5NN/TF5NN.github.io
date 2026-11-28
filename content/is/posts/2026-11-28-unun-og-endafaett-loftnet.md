@@ -20,7 +20,7 @@ Loftnetshönnunin er frá VK3IL: [Multiband end-fed 80–10 m antenna](https://v
 
 ![Spóla úr grænum loftnetsvír vafin á blátt plaströr](/media/2025-05-unun-efhw-3.jpg)
 
-![Spólan komin inn í gráa hlíf á loftnetsvírnum](/media/2025-05-unun-efhw-4.jpg)
+![Spólan komin inn í gráan hitakrimpuhólk með lími](/media/2025-05-unun-efhw-4.jpg)
 
 ![UnUn-inn samsettur í boxinu með kjarnanum, þéttinum og tengjunum](/media/2025-05-unun-efhw-5.jpg)
 
