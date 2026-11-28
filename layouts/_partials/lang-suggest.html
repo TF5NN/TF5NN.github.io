@@ -1,0 +1,21 @@
+{{- /*
+  The small banner at the top of English pages: "This site is also in Icelandic".
+  It is hidden unless the script in baseof.html decides this visitor is probably in Iceland
+  (see the notes there). Its words are in hugo.toml, under [languages.is.params].
+*/ -}}
+{{- if eq site.Language.Lang "en" }}
+{{- $page := . }}
+{{- range hugo.Sites }}{{ if eq .Language.Lang "is" }}
+<div class="lang-suggest" lang="is">
+  <p>{{ .Params.suggest_text }}</p>
+  <a class="button button-small" href="{{ partial "lang-url.html" (dict "page" $page "lang" "is") }}" hreflang="is">{{ .Params.suggest_go }}</a>
+  <button class="lang-suggest-close" type="button" aria-label="{{ .Params.suggest_close }}" title="{{ .Params.suggest_close }}">×</button>
+</div>
+<script>
+  document.querySelector('.lang-suggest-close').addEventListener('click', function () {
+    try { localStorage.setItem('tf5nn-lang-hint', 'closed'); } catch (e) {}
+    document.documentElement.classList.remove('suggest-is');
+  });
+</script>
+{{- end }}{{ end }}
+{{- end -}}

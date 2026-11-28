@@ -1,0 +1,12 @@
+{{- /*
+  The address of this same page in another language, for example /is/about/ for /about/.
+  Use it as:  partial "lang-url.html" (dict "page" . "lang" "is")
+  Every page exists on both sides (see the content mounts in hugo.toml), so this is nearly
+  always the real twin. If there is none, it falls back to that language's front page.
+*/ -}}
+{{- $page := .page -}}
+{{- $lang := .lang -}}
+{{- $url := "" -}}
+{{- range hugo.Sites }}{{ if eq .Language.Lang $lang }}{{ $url = .Home.RelPermalink }}{{ end }}{{ end -}}
+{{- range $page.AllTranslations }}{{ if eq .Language.Lang $lang }}{{ $url = .RelPermalink }}{{ end }}{{ end -}}
+{{- return $url -}}

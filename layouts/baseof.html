@@ -28,9 +28,45 @@
   <!-- Light or dark before the first paint: the visitor's remembered choice (shared with the apps on
        this site), otherwise the device's setting. The button at the end of the top bar switches it. -->
   <script>
+  // Which language to read in.
   // The language being read is remembered for the apps on this site (the ones that speak both
   // languages read it), so any link to them, even one written in a post, opens them in it.
-  try { localStorage.setItem('tf5nn-lang', '{{ site.Language.Lang }}'); } catch (e) {}
+  // On top of that, for English pages:
+  //   - On someone's very first visit, a browser set to Icelandic goes straight to the
+  //     Icelandic version of the same page. It is the same rule the apps use. Anyone who has
+  //     been here before keeps the language they read last, so the EN button always works.
+  //   - A device on Iceland's clock, or with Icelandic further down its list of languages,
+  //     gets a small banner offering the Icelandic version, until it is closed or the
+  //     Icelandic side has been visited. Tourists' phones switch to Iceland's clock too,
+  //     which is why that only suggests and never moves anyone.
+  // Nothing is looked up anywhere: it all comes from the browser's own settings.
+  (function () {
+    var KEY = 'tf5nn-lang', HINT = 'tf5nn-lang-hint';
+    var here = '{{ site.Language.Lang }}';
+    function get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+    function set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+    var before = get(KEY);
+    set(KEY, here);
+    {{- if eq site.Language.Lang "en" }}
+    var wanted = navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || ''];
+    var icelandic = function (l) { return /^is\b/i.test(l || ''); };
+    {{- if ne .Kind "404" }}
+    // Only when the browser can remember (get(KEY) === here), so nobody is sent back again and again.
+    if (!before && get(KEY) === here && icelandic(wanted[0])) {
+      set(KEY, 'is');
+      location.replace('{{ partial "lang-url.html" (dict "page" . "lang" "is") }}' + location.search + location.hash);
+      return;
+    }
+    {{- end }}
+    var zone = '';
+    try { zone = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (e) {}
+    if ((zone === 'Atlantic/Reykjavik' || Array.prototype.some.call(wanted, icelandic)) && !get(HINT)) {
+      document.documentElement.classList.add('suggest-is');
+    }
+    {{- else }}
+    set(HINT, 'seen');
+    {{- end }}
+  })();
   (function () {
     var KEY = 'tf5nn-theme';
     var device = window.matchMedia('(prefers-color-scheme: dark)');
@@ -65,6 +101,7 @@
 </head>
 <body>
   <a class="skip" href="#main">{{ T "skip" }}</a>
+  {{- partial "lang-suggest.html" . }}
   <div class="shell">
     {{ partial "header.html" . }}
     <main id="main">
