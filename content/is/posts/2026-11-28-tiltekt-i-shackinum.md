@@ -55,6 +55,6 @@ Mér fannst stöðin hjá mér hitna óþarflega mikið þegar ég var á FT8, o
 
 ![Vifturnar séðar inn í hillurnar að framan](/media/2026-01-viftur-4.jpg)
 
-![Vifturnar í gangi](/media/2026-01-shack-viftur.gif)
+![Vifturnar settar í gang með IKEA-fjarstýringu](/media/2026-01-shack-viftur.gif)
 
 73, de TF5NN
