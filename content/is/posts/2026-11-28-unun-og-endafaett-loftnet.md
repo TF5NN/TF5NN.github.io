@@ -8,7 +8,7 @@ tags:
   - 3D printing
 cover: /media/2025-05-unun-efhw-5.jpg
 cover_alt: Heimasmíðaður 49:1 UnUn í hvítu þrívíddarprentuðu boxi
-draft: true
+draft: false
 ---
 Smíði á 49:1 UnUn og endafæddu hálfbylgjuloftneti fyrir 80–10 m, allt með íhlutum frá Sotabeams.
 
