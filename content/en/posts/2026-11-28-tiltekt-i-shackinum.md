@@ -9,7 +9,7 @@ cover: /media/2025-12-shack-4.jpg
 cover_alt: The station on the new shelves next to the computer monitor
 translated_from: is
 translated_by: ai
-draft: true
+draft: false
 ---
 ## The shelves
 

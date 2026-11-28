@@ -7,7 +7,7 @@ tags:
   - 3D printing
 cover: /media/2025-12-shack-4.jpg
 cover_alt: Stöðin komin í hillurnar við hliðina á tölvuskjánum
-draft: true
+draft: false
 ---
 ## Hillurnar
 
