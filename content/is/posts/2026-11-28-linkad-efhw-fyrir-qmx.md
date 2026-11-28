@@ -21,7 +21,7 @@ Fékk smá tíma til þess að klára loftnetið fyrir QMX. Þetta er linkað EF
 
 ![Loftnetið uppi sem inverted V á mastri úti í garði](/media/2026-01-qmx-efhw-1.jpg)
 
-Mér fannst það athyglisvert að ég náði SWR fyrir 40 og 20 m nánast alveg niður í 1 en SWR fyrir 30 m er 2. Ég hef grun um að það sé vegna þess að ég er með 4 m coax sem ég nota líka sem mótvægi. Ég valdi þá lengd því að ég las það einhvers staðar að góð lengd væri bylgjulengdin á lægsta bandinu sem maður vildi geta farið á × 0,05. Það ætti þá að harmonera við 40 og 20 m en passar kannski ekki eins vel við 30 m.
+Mér fannst það athyglisvert að ég náði SWR fyrir 40 og 20 m nánast alveg niður í 1 en SWR fyrir 30 m er 2. Ég hef grun um að það sé vegna þess að ég er með 4 m coax sem ég nota líka sem mótvægi. Ég valdi þá lengd því  5% af bylgjulengd lægsta bands sem maður notar á að vera nóg fyrir mótvægi. Það ætti þá að harmonera við 40 og 20 m en passar kannski ekki eins vel við 30 m.
 
 ![NanoVNA sýnir SWR 1,09 á 14,059 MHz](/media/2026-01-qmx-efhw-2.jpg)
 
